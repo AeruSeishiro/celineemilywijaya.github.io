@@ -291,19 +291,28 @@ nav {
 /* ─── MOON DECORATION ───────────────────────────────────── */
 .moon-decoration {
   position: absolute;
-  right: -80px;
+  right: 15%;
   top: 50%;
   transform: translateY(-50%);
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
   background: radial-gradient(
-    circle at 35% 35%,
-    rgba(232, 228, 216, 0.08) 0%,
-    rgba(100, 120, 200, 0.04) 40%,
-    transparent 70%
-  );
-  border: 1px solid rgba(232, 228, 216, 0.06);
+  circle at 35% 35%,
+  rgba(255, 255, 255, 0.35) 0%,
+  rgba(220, 230, 255, 0.25) 15%,
+  rgba(180, 200, 255, 0.18) 30%,
+  rgba(120, 150, 255, 0.10) 50%,
+  rgba(80, 110, 255, 0.05) 65%,
+  transparent 70%
+);
+  border: 1px solid rgba(200, 220, 255, 0.25);
+
+  box-shadow:
+  0 0 60px rgba(200, 220, 255, 0.35),
+  0 0 140px rgba(120, 150, 255, 0.25),
+  0 0 220px rgba(80, 110, 255, 0.15);
+
   animation: moonFloat 8s ease-in-out infinite;
 }
 
