@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>★ Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <canvas id="stars-canvas"></canvas>
+
+  <div class="star-field-overlay" id="starOverlay"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Celine Emily Wijaya ✦</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#project">Project</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-status">
+      <span class="status-dot"></span>
+      available for work
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">designer & developer</div>
+      <h1 class="hero-name">Celine<br/><em>Emily</em></h1>
+      <p class="hero-subtitle">crafting digital experiences</p>
+      <p class="hero-desc">
+        I build things for the web — with attention to detail, a love for clean code, 
+        and an eye for design that feels intentional and alive.
+      </p>
+      <div class="hero-actions">
+        <a href="#project" class="btn-primary"><span>View Work</span></a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+    <div class="moon-decoration"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label" data-num="01 —">About Me</div>
+    <h2 class="section-title">A little bit<br/>about <em>me</em></h2>
+    
+    <div class="about-grid">
+      <div class="about-photo-area">
+        <div class="photo-frame">
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon">◐</div>
+            <div class="photo-placeholder-text">your photo here</div>
+          </div>
+          <div class="photo-corner-tag">◆ 2025</div>
+        </div>
+        <div class="photo-tag">somewhere on earth ☽</div>
+      </div>
+
+      <div class="about-text">
+        <p class="about-bio">
+          Hi, I'm Celine Emily Wijaya. I'm student of Nanyang Technological University, 
+          majoring in Information Engineering and Media. Passionate about
+          creating things that live at the intersection of design and technology. 
+          I believe in work that's thoughtful, purposeful, and beautifully executed.
+        </p>
+        <p class="about-bio" style="margin-top: 16px;">
+          When I'm not building, you'll find me playing guitar, drawing 
+          or staying up too late watching the stars.
+        </p>
+
+        <div class="about-details">
+          <div class="detail-item">
+            <div class="detail-label">Based in</div>
+            <div class="detail-value">Singapore</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Experience</div>
+            <div class="detail-value">2 Years</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Focus</div>
+            <div class="detail-value">Frontend and UI/UX Design</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Information Engineering and Media</div>
+            <div class="detail-value">Your Degree</div>
+          </div>
+        </div>
+
+        <div class="about-tags">
+          <span class="tag">UI Design</span>
+          <span class="tag">Frontend Dev</span>
+          <span class="tag">React</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Creative Code</span>
+          <span class="tag">Motion</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+<!-- ============================================================
+       ADD THIS ENTIRE BLOCK between About and Work sections
+       (between the divider after About and the Work section)
+       ============================================================ -->
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label" data-num="02 —">Experience</div>
+    <h2 class="section-title">Where I've<br/><em>worked</em></h2>
+
+    <div class="experience-list">
+
+      <!-- Entry 1 -->
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-date">May 2024 — Present</div>
+          <div class="exp-location">Indonesia - Remote</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">UI/UX Design Intern</div>
+          <div class="exp-company">PT Berlian Mandiri</div>
+          <p class="exp-desc">
+            Describe what you did here — the projects you worked on, what you contributed, 
+            and the impact you made. Keep it concise but specific, 2–3 sentences works well.
+          </p>
+          <div class="exp-tech">
+            <span class="tech-pill">Figma</span>
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">Tailwind</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 2 -->
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-date">Jul 2025 — Jan 2026</div>
+          <div class="exp-location">Singapore</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Media Intern</div>
+          <div class="exp-company">Phillip Securities Pte. Ltd</div>
+          <p class="exp-desc">
+            What you built, what you learned, what you shipped. 
+            Mention specific outcomes if you can — numbers and results stand out.
+          </p>
+          <div class="exp-tech">
+            <span class="tech-pill">Vue.js</span>
+            <span class="tech-pill">TypeScript</span>
+            <span class="tech-pill">CSS</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       END OF EXPERIENCE SECTION
+       ============================================================ -->
+
+  <div class="divider"></div>
+
+  <!-- WORK -->
+  <section id="project" class="projects-section">
+    <div class="section-label" data-num="02 —">Selected Project</div>
+    <h2 class="section-title">Projects I've<br/><em>built</em></h2>
+
+    <div class="projects-grid">
+      <!-- Featured -->
+      <div class="project-card featured">
+        <div>
+          <div class="project-number">— 001</div>
+          <div class="project-category">Web Application</div>
+          <h3 class="project-title">Project Title One</h3>
+          <p class="project-desc">A brief description of what this project does, the problem it solves, and what makes it interesting or impactful.</p>
+          <div class="project-tech">
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">TypeScript</span>
+            <span class="tech-pill">Tailwind</span>
+            <span class="tech-pill">Supabase</span>
+          </div>
+          <a href="#" class="project-link">View Project →</a>
+        </div>
+        <div class="featured-visual">
+          <div class="featured-visual-inner">
+            <div style="font-size: 2rem; opacity: 0.2; margin-bottom: 8px;">◈</div>
+            project preview
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="project-card">
+        <div class="project-number">— 002</div>
+        <div class="project-category">Mobile Design</div>
+        <h3 class="project-title">Project Two</h3>
+        <p class="project-desc">Short description of what this project is and what makes it compelling to explore.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Figma</span>
+          <span class="tech-pill">Prototyping</span>
+        </div>
+        <a href="#" class="project-link">View Project →</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="project-card">
+        <div class="project-number">— 003</div>
+        <div class="project-category">Branding</div>
+        <h3 class="project-title">Project Three</h3>
+        <p class="project-desc">A quick summary of this project and the creative direction you took.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Illustrator</span>
+          <span class="tech-pill">Brand Design</span>
+        </div>
+        <a href="#" class="project-link">View Project →</a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="project-card">
+        <div class="project-number">— 004</div>
+        <div class="project-category">Frontend</div>
+        <h3 class="project-title">Project Four</h3>
+        <p class="project-desc">Describe the challenge, your approach, and the outcome of this project briefly.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Next.js</span>
+          <span class="tech-pill">CSS</span>
+          <span class="tech-pill">API</span>
+        </div>
+        <a href="#" class="project-link">View Project →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label" data-num="03 —">Skills</div>
+    <h2 class="section-title">What I work<br/><em>with</em></h2>
+
+    <div class="skills-layout">
+      <div class="skills-sidebar">
+        <p class="skills-intro">
+          "I'm most comfortable working at the boundary between design and engineering — 
+          where visual craft meets working code."
+        </p>
+      </div>
+
+      <div class="skills-list">
+        <div class="skill-group">
+          <div class="skill-group-title">Frontend</div>
+          <div class="skill-item">
+            <div class="skill-name">HTML / CSS <span>★★★★★</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">JavaScript <span>★★★★☆</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:82%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">React <span>★★★★☆</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:78%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">TypeScript <span>★★★☆☆</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Design</div>
+          <div class="skill-item">
+            <div class="skill-name">Figma <span>★★★★★</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:92%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">UI Design <span>★★★★★</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Motion Design <span>★★★☆☆</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Illustrator <span>★★★☆☆</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:55%"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Backend / Other</div>
+          <div class="skill-item">
+            <div class="skill-name">Node.js <span>★★★☆☆</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:58%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">SQL / Database <span>★★★☆☆</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:55%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Git / Version Ctrl <span>★★★★☆</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Soft Skills</div>
+          <div class="skill-item">
+            <div class="skill-name">Problem Solving <span>★★★★★</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Communication <span>★★★★☆</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Collaboration <span>★★★★☆</span></div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="contact-inner">
+      <div>
+        <div class="section-label" data-num="04 —">Contact</div>
+        <h2 class="contact-cta">Let's make something<br/><em>beautiful</em> together</h2>
+        <p style="margin-top: 24px; font-size: 0.72rem; color: var(--moon); line-height: 1.8; max-width: 380px;">
+          Whether you have a project in mind, want to collaborate, or just want to say hello — 
+          my inbox is always open.
+        </p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:your@email.com" class="contact-link-item">
+          Email
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="contact-link-item">
+          LinkedIn
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://github.com" target="_blank" class="contact-link-item">
+          GitHub
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://instagram.com" target="_blank" class="contact-link-item">
+          Instagram
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">© 2026 Celine Emily Wijaya . All rights reserved.</div>
+    <div class="footer-right">designed & built with ☽ by me</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
