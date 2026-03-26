@@ -151,7 +151,7 @@ Beyond summarization, StudySynth enhances active learning by creating interactiv
 In addition, the platform includes a dedicated professor dashboard that provides insights into student performance. Through analytics and statistics, educators can identify which topics students struggle with the most, allowing them to adjust their teaching strategies and focus on areas that need more attention.`,
     tech: ['React', 'Tailwind', 'Next.js'],
     link: '#',
-    image: null
+    image: 'images/overview.png'
   },
   {
     number: '— 002',
@@ -169,7 +169,7 @@ In addition, the platform includes a dedicated professor dashboard that provides
     desc: 'An e-book shop platform focused on delivering a seamless and user-friendly digital reading experience. I was responsible for designing the UI/UX and creating detailed wireframes, ensuring intuitive navigation and a clean interface for browsing, purchasing, and reading e-books. The design emphasizes usability, accessibility, and a modern aesthetic to enhance the overall user experience.',
     tech: ['Procreate', 'Figma', 'Adobe Photoshop'],
     link: '#',
-    image: null
+    image: 'images/ebookshop.png'
   },
 ];
 
