@@ -23,6 +23,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#project">Project</a></li>
+      <li><a href="#art">Art</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -183,7 +184,7 @@
 
   <!-- WORK -->
   <section id="project" class="projects-section">
-    <div class="section-label" data-num="02 —">Selected Project</div>
+    <div class="section-label" data-num="03 —">Selected Project</div>
     <h2 class="section-title">Projects I've<br/><em>built</em></h2>
 
     <div class="projects-grid">
@@ -241,9 +242,65 @@
 
   <div class="divider"></div>
 
+  <!-- DIGITAL ART -->
+  <section id="art">
+    <div class="section-label" data-num="04 —">Digital Art</div>
+    <h2 class="section-title">Art I've<br/><em>created</em></h2>
+
+    <div class="art-carousel-scene" id="artScene">
+      <div class="art-carousel" id="artCarousel">
+        <div class="art-card" data-index="0">
+          <img src="images/Columbina.png" alt="Art 1" />
+          <div class="art-card-label">The Moon Goddess - Columbina ✦</div>
+        </div>
+        <div class="art-card" data-index="1">
+          <img src="images/Kinich.png" alt="Art 2" />
+          <div class="art-card-label">Broken Doll Kinich ✦</div>
+        </div>
+        <div class="art-card" data-index="2">
+          <img src="images/KrulTepes.png" alt="Art 3" />
+          <div class="art-card-label">Krul Tepes ✦</div>
+        </div>
+        <div class="art-card" data-index="3">
+          <img src="images/Seishiro.png" alt="Art 4" />
+          <div class="art-card-label">Cute Selfie ✦</div>
+        </div>
+        <div class="art-card" data-index="4">
+          <img src="images/fish.png" alt="Art 5" />
+          <div class="art-card-label">Watercolour Pond ✦</div>
+        </div>
+        <div class="art-card" data-index="5">
+          <img src="images/cat.png" alt="Art 6" />
+          <div class="art-card-label">Shirt Design - Happiness ✦</div>
+        </div>
+        <div class="art-card" data-index="6">
+          <img src="images/bunny.png" alt="Art 7" />
+          <div class="art-card-label">Shirt Design - Starry Night ✦</div>
+        </div>
+        <div class="art-card" data-index="7">
+          <img src="images/dog.png" alt="Art 8" />
+          <div class="art-card-label">Shirt Design - Carefree ✦</div>
+        </div>
+        <div class="art-card" data-index="8">
+          <img src="images/art9.jpg" alt="Art 9" />
+          <div class="art-card-label">artwork title ✦</div>
+        </div>
+        <div class="art-card" data-index="9">
+          <img src="images/art10.jpg" alt="Art 10" />
+          <div class="art-card-label">artwork title ✦</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="art-carousel-controls">
+      <button class="art-arrow" id="artPrev">←</button>
+      <button class="art-arrow" id="artNext">→</button>
+    </div>
+  </section>
+
   <!-- SKILLS -->
   <section id="skills">
-    <div class="section-label" data-num="03 —">Skills</div>
+    <div class="section-label" data-num="05 —">Skills</div>
     <h2 class="section-title">What I work<br/><em>with</em></h2>
 
     <div class="skills-layout">
@@ -332,7 +389,7 @@
   <section id="contact" class="contact-section">
     <div class="contact-inner">
       <div>
-        <div class="section-label" data-num="04 —">Contact</div>
+        <div class="section-label" data-num="06 —">Contact</div>
         <h2 class="contact-cta">Let's make something<br/><em>beautiful</em> together</h2>
         <p style="margin-top: 24px; font-size: 0.72rem; color: var(--moon); line-height: 1.8; max-width: 380px;">
           Whether you have a project in mind, want to collaborate, or just want to say hello — 
@@ -389,6 +446,19 @@
       </div>
     </div>
   </div>
+
+  <!-- ART MODAL -->
+<div class="modal-backdrop" id="artBackdrop" onclick="closeArt()"></div>
+<div class="modal-glass" id="artModal">
+  <button class="modal-close" onclick="closeArt()">✕</button>
+  <div class="art-modal-inner">
+    <div class="art-modal-img-wrap" id="artModalImg"></div>
+    <div class="art-modal-info">
+      <div class="art-modal-num" id="artModalNum">✦</div>
+      <h3 class="art-modal-title" id="artModalTitle">artwork title</h3>
+    </div>
+  </div>
+</div>
 
   <script src="script.js"></script>
 </body>
