@@ -155,31 +155,22 @@ In addition, the platform includes a dedicated professor dashboard that provides
   },
   {
     number: '— 002',
-    category: 'Mobile Design',
-    title: 'Project Two',
-    desc: 'Short description of what this project is and what makes it compelling to explore.',
-    tech: ['Figma', 'Prototyping'],
+    category: 'Game Design',
+    title: 'The Last Experiment',
+    desc: 'The Last Experiment is a survival FPS game that follows a professor whose experiment goes horribly wrong, turning people into zombies. Players must fight to survive against waves of enemies while navigating a dangerous environment shaped by the failed experiment. The game emphasizes fast-paced shooting mechanics, tension, and survival strategy, creating an intense and immersive gameplay experience.',
+    tech: ['Unity', 'C#'],
     link: '#',
     image: null
   },
   {
     number: '— 003',
-    category: 'Branding',
-    title: 'Project Three',
-    desc: 'A quick summary of this project and the creative direction you took.',
-    tech: ['Illustrator', 'Brand Design'],
+    category: 'Website',
+    title: 'E-Book Shop',
+    desc: 'An e-book shop platform focused on delivering a seamless and user-friendly digital reading experience. I was responsible for designing the UI/UX and creating detailed wireframes, ensuring intuitive navigation and a clean interface for browsing, purchasing, and reading e-books. The design emphasizes usability, accessibility, and a modern aesthetic to enhance the overall user experience.',
+    tech: ['Procreate', 'Figma', 'Adobe Photoshop'],
     link: '#',
     image: null
   },
-  {
-    number: '— 004',
-    category: 'Frontend',
-    title: 'Project Four',
-    desc: 'Describe the challenge, your approach, and the outcome of this project briefly.',
-    tech: ['Next.js', 'CSS', 'API'],
-    link: '#',
-    image: null
-  }
 ];
 
 function openProject(index) {
