@@ -93,7 +93,7 @@ function drawStars(t) {
 }
 
 resizeCanvas();
-createStars(300);
+createStars(window.innerWidth <= 600 ? 80 : 300);
 requestAnimationFrame(drawStars);
 window.addEventListener('resize', () => {
   resizeCanvas();
@@ -229,58 +229,61 @@ const artCarousel = document.getElementById('artCarousel');
 const artCards    = artCarousel ? Array.from(artCarousel.querySelectorAll('.art-card')) : [];
 const totalCards  = artCards.length;
 const angleStep   = 360 / totalCards;
-const radius      = 420;
 
-let artAngle    = 0;
-let autoSpin    = null;
-let isHovering  = false;
+/* smaller radius on mobile */
+const getRadius = () => window.innerWidth <= 600 ? 260 : window.innerWidth <= 900 ? 340 : 420;
 
-/* position each card around the circle */
-artCards.forEach((card, i) => {
-  const angle = i * angleStep;
-  card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
-});
+let artAngle   = 0;
+let rafId      = null;
+let isSpinning = false;
+
+/* position each card */
+function positionCards() {
+  const r = getRadius();
+  artCards.forEach((card, i) => {
+    card.style.transform = `rotateY(${i * angleStep}deg) translateZ(${r}px)`;
+  });
+}
+positionCards();
+window.addEventListener('resize', positionCards);
 
 function updateCarousel() {
-  if (artCarousel) {
-    artCarousel.style.transform = `rotateY(${artAngle}deg)`;
-  }
-  /* highlight the front card */
+  if (artCarousel) artCarousel.style.transform = `rotateY(${artAngle}deg)`;
   artCards.forEach((card, i) => {
-    const cardAngle = (i * angleStep + artAngle) % 360;
-    const normalized = ((cardAngle % 360) + 360) % 360;
+    const normalized = (((i * angleStep + artAngle) % 360) + 360) % 360;
     const isFront = normalized < angleStep / 2 || normalized > 360 - angleStep / 2;
     card.classList.toggle('is-front', isFront);
   });
 }
 
-function spinTo(angle) {
-  artAngle = angle;
+/* RAF-based spin — much smoother, no jank on mobile */
+const spinSpeed = 0.15; /* degrees per frame — lower = slower */
+function spinLoop() {
+  if (!isSpinning) return;
+  artAngle -= spinSpeed;
   updateCarousel();
+  rafId = requestAnimationFrame(spinLoop);
 }
 
-/* auto rotate */
 function startSpin() {
-  stopSpin();
-  autoSpin = setInterval(() => {
-    artAngle -= angleStep / 60; /* smooth continuous spin */
-    updateCarousel();
-  }, 16); /* ~60fps */
+  if (isSpinning) return;
+  isSpinning = true;
+  rafId = requestAnimationFrame(spinLoop);
 }
 
 function stopSpin() {
-  clearInterval(autoSpin);
-  autoSpin = null;
+  isSpinning = false;
+  cancelAnimationFrame(rafId);
 }
 
-/* arrow buttons — snap to next/prev card */
+/* arrows */
 let snapIndex = 0;
 document.getElementById('artPrev')?.addEventListener('click', () => {
   stopSpin();
   snapIndex = (snapIndex + 1) % totalCards;
   artAngle = -snapIndex * angleStep;
   updateCarousel();
-  setTimeout(startSpin, 3000); /* resume after 3s */
+  setTimeout(startSpin, 2500);
 });
 
 document.getElementById('artNext')?.addEventListener('click', () => {
@@ -288,28 +291,46 @@ document.getElementById('artNext')?.addEventListener('click', () => {
   snapIndex = (snapIndex - 1 + totalCards) % totalCards;
   artAngle = -snapIndex * angleStep;
   updateCarousel();
-  setTimeout(startSpin, 3000);
+  setTimeout(startSpin, 2500);
 });
 
-/* pause on hover */
-if (artCarousel) {
-  artCarousel.addEventListener('mouseenter', () => { isHovering = true; stopSpin(); });
-  artCarousel.addEventListener('mouseleave', () => { isHovering = false; startSpin(); });
+/* pause on hover — desktop only */
+if (artCarousel && window.matchMedia('(hover: hover)').matches) {
+  artCarousel.addEventListener('mouseenter', stopSpin);
+  artCarousel.addEventListener('mouseleave', startSpin);
 }
 
-/* click card to open modal */
+/* touch swipe */
+let touchStartX = 0;
+if (artCarousel) {
+  artCarousel.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    stopSpin();
+  }, { passive: true });
+  artCarousel.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      snapIndex = diff > 0
+        ? (snapIndex - 1 + totalCards) % totalCards
+        : (snapIndex + 1) % totalCards;
+      artAngle = -snapIndex * angleStep;
+      updateCarousel();
+    }
+    setTimeout(startSpin, 2500);
+  }, { passive: true });
+}
+
+/* click to open modal */
 artCards.forEach((card, i) => {
   card.addEventListener('click', () => {
     stopSpin();
     const img   = card.querySelector('img');
     const label = card.querySelector('.art-card-label');
-
-    document.getElementById('artModalImg').innerHTML   = `<img src="${img.src}" alt="${img.alt}" />`;
+    document.getElementById('artModalImg').innerHTML    = `<img src="${img.src}" alt="${img.alt}" />`;
     document.getElementById('artModalNum').textContent  = `✦ ${String(i + 1).padStart(2, '0')}`;
     document.getElementById('artModalTitle').textContent = label
       ? label.textContent.replace('✦', '').trim()
       : img.alt;
-
     document.getElementById('artBackdrop').classList.add('open');
     document.getElementById('artModal').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -324,5 +345,10 @@ function closeArt() {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArt(); });
+
+/* reduce stars on mobile for performance */
+if (window.innerWidth <= 600) {
+  createStars(80);
+} 
 
 startSpin();
