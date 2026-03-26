@@ -137,3 +137,98 @@ const skillObserver = new IntersectionObserver((entries) => {
 
 const skillsSection = document.getElementById('skills');
 if (skillsSection) skillObserver.observe(skillsSection);
+
+/* ─── PROJECT MODAL ─────────────────────────────────────── */
+const projects = [
+  {
+    number: '— 001',
+    category: 'Web Application',
+    title: 'StudySynth',
+    desc: `StudySynth is an AI-powered study assistant designed specifically for NTU students to make learning more efficient and personalized. The platform allows users to upload lecture materials in various formats—including documents, audio recordings, or MP3 files—and automatically generates concise summaries to help students quickly grasp key concepts.
+
+Beyond summarization, StudySynth enhances active learning by creating interactive quizzes based on selected materials, enabling students to test their understanding and reinforce knowledge.
+
+In addition, the platform includes a dedicated professor dashboard that provides insights into student performance. Through analytics and statistics, educators can identify which topics students struggle with the most, allowing them to adjust their teaching strategies and focus on areas that need more attention.`,
+    tech: ['React', 'Tailwind', 'Next.js'],
+    link: '#',
+    image: null
+  },
+  {
+    number: '— 002',
+    category: 'Mobile Design',
+    title: 'Project Two',
+    desc: 'Short description of what this project is and what makes it compelling to explore.',
+    tech: ['Figma', 'Prototyping'],
+    link: '#',
+    image: null
+  },
+  {
+    number: '— 003',
+    category: 'Branding',
+    title: 'Project Three',
+    desc: 'A quick summary of this project and the creative direction you took.',
+    tech: ['Illustrator', 'Brand Design'],
+    link: '#',
+    image: null
+  },
+  {
+    number: '— 004',
+    category: 'Frontend',
+    title: 'Project Four',
+    desc: 'Describe the challenge, your approach, and the outcome of this project briefly.',
+    tech: ['Next.js', 'CSS', 'API'],
+    link: '#',
+    image: null
+  }
+];
+
+function openProject(index) {
+  const p = projects[index];
+  const modal    = document.getElementById('projectModal');
+  const backdrop = document.getElementById('modalBackdrop');
+
+  document.getElementById('modalNumber').textContent   = p.number;
+  document.getElementById('modalCategory').textContent = p.category;
+  document.getElementById('modalTitle').textContent    = p.title;
+  document.getElementById('modalDesc').innerHTML = p.desc
+    .split('\n\n')
+    .map(para => `<p style="margin-bottom:16px;">${para.trim()}</p>`)
+    .join('');
+
+  // tech pills
+  const techEl = document.getElementById('modalTech');
+  techEl.innerHTML = p.tech.map(t => `<span class="tech-pill">${t}</span>`).join('');
+
+  // link
+  const cta = document.getElementById('modalCta');
+  cta.href = p.link;
+
+  // preview image
+  const preview = document.getElementById('modalPreview');
+  const existing = preview.querySelector('img');
+  if (existing) existing.remove();
+  if (p.image) {
+    const img = document.createElement('img');
+    img.src = p.image;
+    img.alt = p.title;
+    preview.appendChild(img);
+    document.getElementById('modalPreviewLabel').style.display = 'none';
+  } else {
+    document.getElementById('modalPreviewLabel').style.display = '';
+  }
+
+  backdrop.classList.add('open');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProject() {
+  document.getElementById('projectModal').classList.remove('open');
+  document.getElementById('modalBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeProject();
+});

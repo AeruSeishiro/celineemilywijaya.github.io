@@ -106,7 +106,7 @@
           <span class="tag">Frontend Dev</span>
           <span class="tag">React</span>
           <span class="tag">Figma</span>
-          <span class="tag">Charater Design</span>
+          <span class="tag">Character Design</span>
           <span class="tag">Digital Art</span>
         </div>
       </div>
@@ -114,10 +114,11 @@
   </section>
 
   <div class="divider"></div>
+  
 <!-- ============================================================
-       ADD THIS ENTIRE BLOCK between About and Work sections
-       (between the divider after About and the Work section)
-       ============================================================ -->
+      ADD THIS ENTIRE BLOCK between About and Work sections
+      (between the divider after About and the Work section)
+============================================================ -->
 
   <!-- EXPERIENCE -->
   <section id="experience">
@@ -191,15 +192,14 @@
         <div>
           <div class="project-number">— 001</div>
           <div class="project-category">Web Application</div>
-          <h3 class="project-title">Project Title One</h3>
-          <p class="project-desc">A brief description of what this project does, the problem it solves, and what makes it interesting or impactful.</p>
+          <h3 class="project-title">StudySynth</h3>
+          <p class="project-desc">StudySynth is an AI-powered study tool for NTU students that generates summaries and quizzes from uploaded notes or audio, while providing professors with insights into student understanding.</p>
           <div class="project-tech">
-            <span class="tech-pill">React</span>
-            <span class="tech-pill">TypeScript</span>
+            <span class="tech-pill">Figma</span>
             <span class="tech-pill">Tailwind</span>
-            <span class="tech-pill">Supabase</span>
+            <span class="tech-pill">Next.js</span>
           </div>
-          <a href="#" class="project-link">View Project →</a>
+          <button class="project-link" onclick="openProject(0)">View Detail →</button>
         </div>
         <div class="featured-visual">
           <div class="featured-visual-inner">
@@ -219,7 +219,7 @@
           <span class="tech-pill">Figma</span>
           <span class="tech-pill">Prototyping</span>
         </div>
-        <a href="#" class="project-link">View Project →</a>
+        <button class="project-link" onclick="openProject(0)">View Detail →</button>
       </div>
 
       <!-- Card 3 -->
@@ -232,7 +232,7 @@
           <span class="tech-pill">Illustrator</span>
           <span class="tech-pill">Brand Design</span>
         </div>
-        <a href="#" class="project-link">View Project →</a>
+        <button class="project-link" onclick="openProject(0)">View Detail →</button>
       </div>
 
       <!-- Card 4 -->
@@ -246,7 +246,7 @@
           <span class="tech-pill">CSS</span>
           <span class="tech-pill">API</span>
         </div>
-        <a href="#" class="project-link">View Project →</a>
+        <button class="project-link" onclick="openProject(0)">View Detail →</button>
       </div>
     </div>
   </section>
@@ -377,6 +377,30 @@
     <div class="footer-left">© 2026 Celine Emily Wijaya . All rights reserved.</div>
     <div class="footer-right">designed & built with ☽ by me</div>
   </footer>
+
+  <!-- PROJECT MODAL -->
+  <div class="modal-backdrop" id="modalBackdrop" onclick="closeProject()"></div>
+  <div class="modal-glass" id="projectModal">
+    <button class="modal-close" onclick="closeProject()">✕</button>
+    <div class="modal-inner">
+      <div class="modal-preview" id="modalPreview">
+        <div class="modal-preview-inner">
+          <div style="font-size:2.5rem;opacity:0.2;margin-bottom:8px;">◈</div>
+          <span id="modalPreviewLabel">project preview</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-meta">
+          <span class="modal-number" id="modalNumber">— 001</span>
+          <span class="modal-category" id="modalCategory">Web Application</span>
+        </div>
+        <h3 class="modal-title" id="modalTitle">StudySynth</h3>
+        <p class="modal-desc" id="modalDesc">Description goes here.</p>
+        <div class="modal-tech" id="modalTech"></div>
+        <a href="#" class="modal-cta" id="modalCta" target="_blank">Visit Project →</a>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
