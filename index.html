@@ -2,458 +2,321 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>★ Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Celine Emily is a UI/UX designer and frontend developer creating considered digital products and visual experiences." />
+  <meta name="theme-color" content="#060713" />
+  <meta property="og:title" content="Celine Emily — UI/UX Designer" />
+  <meta property="og:description" content="Selected UI/UX case studies, frontend work, and visual explorations." />
+  <title>Celine Emily — UI/UX Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+  <canvas id="stars-canvas" aria-hidden="true"></canvas>
+  <div class="star-field-overlay" id="starOverlay" aria-hidden="true"></div>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <header class="site-header" id="top">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="nav-brand" href="#top" aria-label="Celine Emily, back to top">
+        <span class="nav-brand-name">Celine Emily Wijaya</span>
+        <span aria-hidden="true">✦</span>
+      </a>
 
-  <canvas id="stars-canvas"></canvas>
+      <div class="nav-desktop-links">
+        <a href="#work">Project</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Capabilities</a>
+        <a href="#about">About</a>
+        <a href="#toolkit">Skills</a>
+      </div>
 
-  <div class="star-field-overlay" id="starOverlay"></div>
+      <div class="nav-desktop-actions">
+        <span class="availability"><span class="availability-dot"></span>open to opportunities</span>
+        <a class="nav-cta" href="mailto:celineemilywijaya@email.com?subject=CV%20request%20for%20Celine%20Emily">Request CV</a>
+      </div>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo">Celine Emily Wijaya ✦</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#project">Project</a></li>
-      <li><a href="#art">Art</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-status">
-      <span class="status-dot"></span>
-      available for work
-    </div>
-  </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">
+        <span></span><span></span>
+      </button>
+    </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-eyebrow">designer & developer</div>
-      <h1 class="hero-name">Celine<br/><em>Emily</em></h1>
-      <p class="hero-subtitle">crafting digital experiences</p>
-      <p class="hero-desc">
-        I build things for the web — with attention to detail, a love for clean code, 
-        and an eye for design that feels intentional and alive.
-      </p>
-      <div class="hero-actions">
-        <a href="#project" class="btn-primary"><span>View Work</span></a>
-        <a href="#contact" class="btn-secondary">Get in Touch</a>
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <div class="mobile-menu-inner">
+        <p class="mobile-menu-label">Navigate</p>
+        <a href="#work">Selected work <span>01</span></a>
+        <a href="#experience">Experience <span>02</span></a>
+        <a href="#skills">Capabilities <span>03</span></a>
+        <a href="#art">Visual exploration <span>04</span></a>
+        <a href="#about">About <span>05</span></a>
+        <a href="#toolkit">Toolkit <span>06</span></a>
+        <a href="#contact">Contact <span>07</span></a>
+        <a class="mobile-menu-cta" href="mailto:celineemilywijaya@email.com?subject=CV%20request%20for%20Celine%20Emily">Request CV <span>↗</span></a>
       </div>
     </div>
-    <div class="moon-decoration"></div>
-  </section>
+  </header>
 
-  <div class="divider"></div>
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow reveal"><span></span>UI/UX designer &amp; frontend developer</p>
+          <h1 class="hero-name reveal" id="hero-title">Celine <em>Emily</em></h1>
+          <p class="hero-role reveal">Designing clear, considered digital products from early concept to working interface.</p>
+          <p class="hero-desc reveal">I combine interface craft, visual storytelling, and frontend thinking to make complex experiences feel focused, useful, and memorable.</p>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-label" data-num="01 —">About Me</div>
-    <h2 class="section-title">A little bit<br/>about <em>me</em></h2>
-    
-    <div class="about-grid">
-      <div class="about-photo-area">
-        <div class="photo-frame">
-            <img src="images/celine.jpg" alt="Celine Emily" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
-          <div class="photo-corner-tag">◆ 2025</div>
-        </div>
-        <div class="photo-tag">somewhere on earth ☽</div>
-      </div>
+          <div class="hero-actions reveal">
+            <a href="#work" class="button button-primary">View case studies <span>↓</span></a>
+            <a href="mailto:celineemilywijaya@email.com?subject=CV%20request%20for%20Celine%20Emily" class="button button-secondary">Request CV <span>↗</span></a>
+          </div>
 
-      <div class="about-text">
-        <p class="about-bio">
-          Hi, I'm Celine Emily Wijaya. I'm student of Nanyang Technological University, 
-          majoring in Information Engineering and Media. Passionate about
-          creating things that live at the intersection of design and technology. 
-          I believe in work that's thoughtful, purposeful, and beautifully executed.
-        </p>
-        <p class="about-bio" style="margin-top: 16px;">
-          When I'm not building, you'll find me playing guitar, drawing 
-          or staying up too late watching the stars.
-        </p>
-
-        <div class="about-details">
-          <div class="detail-item">
-            <div class="detail-label">Based in</div>
-            <div class="detail-value">Singapore</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Experience</div>
-            <div class="detail-value">2 Years</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Focus</div>
-            <div class="detail-value">Frontend and UI/UX Design</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Major</div>
-            <div class="detail-value">Information Engineering and Media</div>
-          </div>
+          <dl class="hero-facts reveal">
+            <div><dt>Based in</dt><dd>Singapore</dd></div>
+            <div><dt>Focus</dt><dd>Product &amp; interface design</dd></div>
+            <div><dt>Currently</dt><dd>Open to UI/UX roles</dd></div>
+          </dl>
         </div>
 
-        <div class="about-tags">
-          <span class="tag">UI Design</span>
-          <span class="tag">UI/UX Consultant</span>
-          <span class="tag">Frontend Dev</span>
-          <span class="tag">React</span>
-          <span class="tag">Figma</span>
-          <span class="tag">Character Design</span>
-          <span class="tag">Digital Art</span>
+        <div class="hero-art reveal" aria-hidden="true">
+          <div class="orbit orbit-outer"></div>
+          <div class="orbit orbit-inner"></div>
+          <div class="moon-decoration"><span class="moon-crater crater-one"></span><span class="moon-crater crater-two"></span><span class="moon-crater crater-three"></span></div>
+          <div class="hero-art-note note-top">clarity in motion</div>
+          <div class="hero-art-note note-bottom">designing with intent <span>✦</span></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider"></div>
-  
-<!-- ============================================================
-      ADD THIS ENTIRE BLOCK between About and Work sections
-      (between the divider after About and the Work section)
-============================================================ -->
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-label" data-num="02 —">Experience</div>
-    <h2 class="section-title">Where I've<br/><em>worked</em></h2>
-
-    <div class="experience-list">
-
-      <!-- Entry 1 -->
-      <div class="exp-item">
-        <div class="exp-left">
-          <div class="exp-date">May 2024 — Present</div>
-          <div class="exp-location">Indonesia - Remote</div>
-        </div>
-        <div class="exp-right">
-          <div class="exp-role">UI/UX Design Intern</div>
-          <div class="exp-company">PT Berlian Mandiri</div>
-          <p class="exp-desc">
-            Designed user-centered UI/UX solutions, developing wireframes and interfaces 
-            while advising on usability and design consistency to enhance overall user experience.
-          </p>
-          <div class="exp-tech">
-            <span class="tech-pill">Figma</span>
-            <span class="tech-pill">Procreate</span>
-            <span class="tech-pill">Tailwind</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Entry 2 -->
-      <div class="exp-item">
-        <div class="exp-left">
-          <div class="exp-date">Jul 2025 — Jan 2026</div>
-          <div class="exp-location">Singapore</div>
-        </div>
-        <div class="exp-right">
-          <div class="exp-role">Media Intern</div>
-          <div class="exp-company">Phillip Securities Pte. Ltd</div>
-          <p class="exp-desc">
-            Created and edited financial media content, including videos and digital visuals, while supporting marketing campaigns 
-            and ensuring clear, engaging communication of financial information.
-          </p>
-          <div class="exp-tech">
-            <span class="tech-pill">Procreate</span>
-            <span class="tech-pill">Figma</span>
-            <span class="tech-pill">Adobe Photoshop</span>
-            <span class="tech-pill">Adobe After Effect</span>
-            <span class="tech-pill">Adobe Illustration</span>
-            <span class="tech-pill">Premiere Pro</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================================================
-       END OF EXPERIENCE SECTION
-       ============================================================ -->
-
-  <div class="divider"></div>
-
-  <!-- WORK -->
-  <section id="project" class="projects-section">
-    <div class="section-label" data-num="03 —">Selected Project</div>
-    <h2 class="section-title">Projects I've<br/><em>built</em></h2>
-
-    <div class="projects-grid">
-      <!-- Featured -->
-      <div class="project-card featured">
+    <section class="section section-work" id="work" aria-labelledby="work-title">
+      <div class="section-heading split-heading reveal">
         <div>
-          <div class="project-number">— 001</div>
-          <div class="project-category">Web Application</div>
-          <h3 class="project-title">StudySynth</h3>
-          <p class="project-desc">StudySynth is an AI-powered study tool for NTU students that generates summaries and quizzes from uploaded notes or audio, while providing professors with insights into student understanding.</p>
-          <div class="project-tech">
-            <span class="tech-pill">Figma</span>
-            <span class="tech-pill">Tailwind</span>
-            <span class="tech-pill">Next.js</span>
-          </div>
-          <button class="project-link" onclick="openProject(0)">View Detail →</button>
+          <p class="section-kicker"><span>01</span> Selected work</p>
+          <h2 id="work-title">Case studies that<br /><em>show the thinking.</em></h2>
         </div>
-        <div class="featured-visual">
-          <img src="images/dashboard.jpg" alt="StudySynth" style="width:100%;height:100%;object-fit:cover;" />
-        </div>
+        <p class="section-intro">A selection of product, interaction, and visual-design projects shaped through intentional systems and detail-led execution.</p>
       </div>
 
-      <!-- Card 2 -->
-      <div class="project-card">
-        <div class="project-number">— 002</div>
-        <div class="project-category">Game Design</div>
-        <h3 class="project-title">The Last Experiment</h3>
-        <p class="project-desc">The Last Experiment is a survival FPS where a professor must fight off zombies after a failed experiment turns people into the undead.</p>
-        <div class="project-tech">
-          <span class="tech-pill">Unity</span>
-          <span class="tech-pill">C#</span>
-        </div>
-        <button class="project-link" onclick="openProject(1)">View Detail →</button>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="project-card">
-        <div class="project-number">— 003</div>
-        <div class="project-category">Website</div>
-        <h3 class="project-title">E-book Shop</h3>
-        <p class="project-desc">An e-book shop website where I designed the UI/UX and created wireframes to ensure a smooth and user-friendly reading and purchasing experience.</p>
-        <div class="project-tech">
-          <span class="tech-pill">Procreate</span>
-          <span class="tech-pill">Figma</span>
-          <span class="tech-pill">Adobe Photoshop</span>
-        </div>
-        <button class="project-link" onclick="openProject(2)">View Detail →</button>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- DIGITAL ART -->
-  <section id="art">
-    <div class="section-label" data-num="04 —">Digital Art</div>
-    <h2 class="section-title">Art I've<br/><em>created</em></h2>
-
-    <div class="art-carousel-scene" id="artScene">
-      <div class="art-carousel" id="artCarousel">
-        <div class="art-card" data-index="0">
-          <img src="images/Columbina.png" alt="Art 1" />
-          <div class="art-card-label">The Moon Goddess - Columbina ✦</div>
-        </div>
-        <div class="art-card" data-index="1">
-          <img src="images/Kinich.png" alt="Art 2" />
-          <div class="art-card-label">Broken Doll Kinich ✦</div>
-        </div>
-        <div class="art-card" data-index="2">
-          <img src="images/KrulTepes.png" alt="Art 3" />
-          <div class="art-card-label">Krul Tepes ✦</div>
-        </div>
-        <div class="art-card" data-index="3">
-          <img src="images/Seishiro.png" alt="Art 4" />
-          <div class="art-card-label">Cute Selfie ✦</div>
-        </div>
-        <div class="art-card" data-index="4">
-          <img src="images/koi.png" alt="Art 5" />
-          <div class="art-card-label">Watercolour Pond ✦</div>
-        </div>
-        <div class="art-card" data-index="5">
-          <img src="images/cats.png" alt="Art 6" />
-          <div class="art-card-label">Shirt Design - Happiness ✦</div>
-        </div>
-        <div class="art-card" data-index="6">
-          <img src="images/rabbit.png" alt="Art 7" />
-          <div class="art-card-label">Shirt Design - Starry Night ✦</div>
-        </div>
-        <div class="art-card" data-index="7">
-          <img src="images/dogs.png" alt="Art 8" />
-          <div class="art-card-label">Shirt Design - Carefree ✦</div>
-        </div>
-        <div class="art-card" data-index="8">
-          <img src="images/elctrk.png" alt="Art 9" />
-          <div class="art-card-label">Elctrk Sweater ✦</div>
-        </div>
-        <div class="art-card" data-index="9">
-          <img src="images/poster.png" alt="Art 10" />
-          <div class="art-card-label">Typograpgy Poster ✦</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="art-carousel-controls">
-      <button class="art-arrow" id="artNext">←</button>
-      <button class="art-arrow" id="artPrev">→</button>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="section-label" data-num="05 —">Skills</div>
-    <h2 class="section-title">What I work<br/><em>with</em></h2>
-
-    <div class="skills-layout">
-      <div class="skills-sidebar">
-        <p class="skills-intro">
-          "I'm most comfortable working at the boundary between design and engineering — 
-          where visual craft meets working code."
-        </p>
-      </div>
-
-      <div class="skills-list">
-        <div class="skill-group">
-          <div class="skill-group-title">Frontend</div>
-          <div class="skill-item">
-            <div class="skill-name">HTML / CSS <span>★★★★★</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div>
+      <div class="project-grid">
+        <a class="project-card project-card-featured reveal" href="project.html?project=studysynth">
+          <div class="project-card-content">
+            <div class="project-card-topline"><span>01 — Product concept</span><span>Open case study ↗</span></div>
+            <p class="project-type">Education technology</p>
+            <h3>StudySynth</h3>
+            <p class="project-summary">An AI-powered study companion that turns lecture material into summaries, quizzes, and useful teaching insights.</p>
+            <ul class="project-tags" aria-label="StudySynth tools"><li>UI/UX</li><li>Next.js</li><li>Tailwind</li></ul>
+            <span class="project-link">Explore the case study <b>→</b></span>
           </div>
-          <div class="skill-item">
-            <div class="skill-name">JavaScript <span>★★★★☆</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:82%"></div></div>
+          <div class="project-visual project-visual-studysynth">
+            <div class="visual-frame">
+              <img src="images/dashboard.jpg" width="1280" height="720" alt="StudySynth dashboard interface" />
+            </div>
+            <span class="visual-caption">Designed for active learning</span>
           </div>
-          <div class="skill-item">
-            <div class="skill-name">React <span>★★★★☆</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:78%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">TypeScript <span>★★★☆☆</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-title">Design</div>
-          <div class="skill-item">
-            <div class="skill-name">Figma <span>★★★★★</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:92%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">UI Design <span>★★★★★</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Graphic Design <span>★★★★☆</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Illustrator <span>★★★★☆</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:55%"></div></div>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-title">Backend / Other</div>
-          <div class="skill-item">
-            <div class="skill-name">Node.js <span>★★★☆☆</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:58%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">SQL / Database <span>★★★☆☆</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:55%"></div></div>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-title">Soft Skills</div>
-          <div class="skill-item">
-            <div class="skill-name">Problem Solving <span>★★★★★</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Communication <span>★★★★☆</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Collaboration <span>★★★★☆</span></div>
-            <div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- CONTACT -->
-  <section id="contact" class="contact-section">
-    <div class="contact-inner">
-      <div>
-        <div class="section-label" data-num="06 —">Contact</div>
-        <h2 class="contact-cta">Let's make something<br/><em>beautiful</em> together</h2>
-        <p style="margin-top: 24px; font-size: 0.72rem; color: var(--moon); line-height: 1.8; max-width: 380px;">
-          Whether you have a project in mind, want to collaborate, or just want to say hello — 
-          my inbox is always open.
-        </p>
-      </div>
-      <div class="contact-links">
-        <a href="celineemilywijaya@email.com" class="contact-link-item">
-          Email
-          <span class="contact-link-arrow">→</span>
         </a>
-        <a href="https://www.linkedin.com/in/celine-emily-wijaya-41737629b/" target="_blank" class="contact-link-item">
-          LinkedIn
-          <span class="contact-link-arrow">→</span>
+
+        <a class="project-card project-card-half reveal" href="project.html?project=last-experiment">
+          <div class="project-visual project-visual-experiment" aria-hidden="true">
+            <div class="experiment-scanline"></div>
+            <div class="experiment-grid"></div>
+            <div class="experiment-hud"><span>EX-07</span><span>01:42</span></div>
+            <div class="experiment-target"></div>
+            <p>contain the unknown</p>
+          </div>
+          <div class="project-card-content">
+            <div class="project-card-topline"><span>02 — Interaction design</span><span>Open ↗</span></div>
+            <p class="project-type">Game design</p>
+            <h3>The Last<br />Experiment</h3>
+            <p class="project-summary">A survival FPS concept exploring tension, fast decisions, and interaction under pressure.</p>
+            <ul class="project-tags" aria-label="The Last Experiment tools"><li>Unity</li><li>C#</li></ul>
+            <span class="project-link">Explore the case study <b>→</b></span>
+          </div>
         </a>
-        <a href="https://github.com/AeruSeishiro?tab=overview&from=2024-12-01&to=2024-12-31" target="_blank" class="contact-link-item">
-          GitHub
-          <span class="contact-link-arrow">→</span>
-        </a>
-        <a href="https://instagram.com/cellinneee_" target="_blank" class="contact-link-item">
-          Instagram
-          <span class="contact-link-arrow">→</span>
+
+        <a class="project-card project-card-half reveal" href="project.html?project=ebook-shop">
+          <div class="project-visual project-visual-ebook">
+            <img src="images/ebookshop.png" width="1440" height="900" alt="E-book shop interface design" loading="lazy" decoding="async" />
+            <span>Browse · buy · read</span>
+          </div>
+          <div class="project-card-content">
+            <div class="project-card-topline"><span>03 — Commerce experience</span><span>Open ↗</span></div>
+            <p class="project-type">UI/UX design</p>
+            <h3>E-book<br />Shop</h3>
+            <p class="project-summary">A calm e-commerce reading experience designed around discoverability, purchase flow, and digital reading.</p>
+            <ul class="project-tags" aria-label="E-book Shop tools"><li>Figma</li><li>Wireframing</li><li>Visual design</li></ul>
+            <span class="project-link">Explore the case study <b>→</b></span>
+          </div>
         </a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-left">© 2026 Celine Emily Wijaya . All rights reserved.</div>
-    <div class="footer-right">designed & built with ☽ by me</div>
-  </footer>
+    <section class="section design-principles" aria-label="Design approach">
+      <div class="principles-intro reveal">
+        <p class="section-kicker"><span>Approach</span> How I work</p>
+        <h2>Beautiful interfaces<br />need a <em>clear reason</em> to exist.</h2>
+      </div>
+      <div class="principles-grid">
+        <article class="principle-card reveal"><span>01</span><h3>Find the flow</h3><p>I turn ideas into focused journeys so people always know what comes next.</p></article>
+        <article class="principle-card reveal"><span>02</span><h3>Build the system</h3><p>I use hierarchy, components, and states to make decisions feel consistent at every touchpoint.</p></article>
+        <article class="principle-card reveal"><span>03</span><h3>Refine the feeling</h3><p>I bring visual craft to the details that make a product feel clear, intentional, and alive.</p></article>
+      </div>
+    </section>
 
-  <!-- PROJECT MODAL -->
-  <div class="modal-backdrop" id="modalBackdrop" onclick="closeProject()"></div>
-  <div class="modal-glass" id="projectModal">
-    <button class="modal-close" onclick="closeProject()">✕</button>
-    <div class="modal-inner">
-      <div class="modal-preview" id="modalPreview">
-        <div class="modal-preview-inner">
-          <div style="font-size:2.5rem;opacity:0.2;margin-bottom:8px;">◈</div>
-          <span id="modalPreviewLabel">project preview</span>
+    <section class="section section-experience" id="experience" aria-labelledby="experience-title">
+      <div class="section-heading reveal">
+        <p class="section-kicker"><span>02</span> Experience</p>
+        <h2 id="experience-title">Where I’ve made<br /><em>ideas useful.</em></h2>
+      </div>
+      <div class="experience-list">
+        <article class="experience-item reveal">
+          <div class="experience-meta"><span>May 2026 - Aug 2026</span><span>Singapore · Full-Time</span></div>
+          <div class="experience-main">
+            <p class="experience-role">AI Creative Tech Intern</p>
+            <h3>La Royale Group</h3>
+            <p>• Automated content production workflows to improve efficiency and consistency across campaigns</p>
+            <p>• Prompt engineering to optimize AI-generated outputs for marketing and creative use cases</p>
+            <p>• Built a tool to automate clip downloading, streamlining content sourcing for the team</p>
+            <ul class="project-tags"><li>Python</li><li>HeyGen</li><li>Kling</li><li>GeeLark</li><li>Higgsfield</li></ul>
+          </div>
+        </article>
+        <article class="experience-item reveal">
+          <div class="experience-meta"><span>Jan 2026 — Present</span><span>Indonesia · Remote</span></div>
+          <div class="experience-main">
+            <p class="experience-role">UI/UX Design and Consultant</p>
+            <h3>PT Sumber Berlian Mandiri</h3>
+            <p>Translated business needs into wireframes and polished interfaces, while advising on usability and design consistency across digital touchpoints.</p>
+            <ul class="project-tags"><li>Figma</li><li>Procreate</li><li>Tailwind</li><li>CSS</li><li>HTML</li></ul>
+          </div>
+        </article>
+        <article class="experience-item reveal">
+          <div class="experience-meta"><span>Jul 2025 — Jan 2026</span><span>Singapore</span></div>
+          <div class="experience-main">
+            <p class="experience-role">Media Intern</p>
+            <h3>Phillip Securities Pte. Ltd.</h3>
+            <p>Created visual content for financial communication, bringing clarity and consistency to videos, digital assets, and marketing campaigns.</p>
+            <ul class="project-tags"><li>Figma</li><li>Photoshop</li><li>After Effects</li><li>Premiere Pro</li></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-skills" id="skills" aria-labelledby="skills-title">
+      <div class="skills-copy reveal">
+        <p class="section-kicker"><span>03</span> Capabilities</p>
+        <h2 id="skills-title">From first flow<br />to <em>finished interface.</em></h2>
+        <p>I’m most at home where visual craft meets buildable product thinking—moving between Figma, feedback, and the browser with intention.</p>
+      </div>
+      <div class="capability-grid">
+        <article class="capability-card reveal"><p>01 · Product UX</p><h3>Flows &amp; interfaces</h3><ul><li>User flows</li><li>Wireframes</li><li>Interface design</li><li>Interactive prototypes</li></ul></article>
+        <article class="capability-card reveal"><p>02 · Systems</p><h3>Clear, repeatable patterns</h3><ul><li>Figma components</li><li>Visual hierarchy</li><li>Responsive design</li><li>Developer handoff</li></ul></article>
+        <article class="capability-card reveal"><p>03 · Build</p><h3>Design that can ship</h3><ul><li>HTML &amp; CSS</li><li>JavaScript &amp; React</li><li>Tailwind</li><li>TypeScript</li></ul></article>
+        <article class="capability-card reveal"><p>04 · Visual craft</p><h3>Story through detail</h3><ul><li>Illustration</li><li>Graphic design</li><li>Motion &amp; media</li><li>Character design</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section section-art" id="art" aria-labelledby="art-title">
+      <div class="section-heading split-heading reveal">
+        <div>
+          <p class="section-kicker"><span>04</span> Visual exploration</p>
+          <h2 id="art-title">A visual practice<br />that feeds <em>the product work.</em></h2>
+        </div>
+        <p class="section-intro">Illustration keeps my eye tuned to composition, contrast, character, and the small details that shape how an interface feels.</p>
+      </div>
+      <div class="art-grid" aria-label="Selected artwork">
+        <button class="art-card art-card-tall reveal" type="button" data-art-src="images/Columbina.png" data-art-title="The Moon Goddess — Columbina" data-art-alt="Digital illustration of Columbina as a moon goddess"><img src="images/Columbina.png" alt="Digital illustration of Columbina as a moon goddess" loading="lazy" decoding="async" /><span><small>01</small>The Moon Goddess</span></button>
+        <button class="art-card reveal" type="button" data-art-src="images/Kinich.png" data-art-title="Broken Doll Kinich" data-art-alt="Digital character illustration titled Broken Doll Kinich"><img src="images/Kinich.png" alt="Digital character illustration titled Broken Doll Kinich" loading="lazy" decoding="async" /><span><small>02</small>Broken Doll Kinich</span></button>
+        <button class="art-card reveal" type="button" data-art-src="images/koi.png" data-art-title="Watercolour Pond" data-art-alt="Watercolour-style pond illustration with koi fish"><img src="images/koi.png" alt="Watercolour-style pond illustration with koi fish" loading="lazy" decoding="async" /><span><small>03</small>Watercolour Pond</span></button>
+        <button class="art-card reveal" type="button" data-art-src="images/cats.png" data-art-title="Happiness" data-art-alt="Shirt design artwork titled Happiness"><img src="images/cats.png" alt="Shirt design artwork titled Happiness" loading="lazy" decoding="async" /><span><small>04</small>Happiness</span></button>
+        <button class="art-card reveal" type="button" data-art-src="images/rabbit.png" data-art-title="Starry Night" data-art-alt="Shirt design artwork titled Starry Night"><img src="images/rabbit.png" alt="Shirt design artwork titled Starry Night" loading="lazy" decoding="async" /><span><small>05</small>Starry Night</span></button>
+        <button class="art-card art-card-wide reveal" type="button" data-art-src="images/poster.png" data-art-title="Typography Poster" data-art-alt="Typography poster artwork"><img src="images/poster.png" alt="Typography poster artwork" loading="lazy" decoding="async" /><span><small>06</small>Typography Poster</span></button>
+      </div>
+    </section>
+
+    <section class="section section-about" id="about" aria-labelledby="about-title">
+      <div class="about-portrait reveal"><img src="images/celine.jpg" width="1080" height="1440" alt="Celine Emily" loading="lazy" decoding="async" /><span class="portrait-note">Singapore · 2026</span></div>
+      <div class="about-content reveal">
+        <p class="section-kicker"><span>05</span> About</p>
+        <h2 id="about-title">Curious by nature.<br /><em>Intentional by practice.</em></h2>
+        <p>Hi, I’m Celine Emily, an Information Engineering and Media student at Nanyang Technological University. I care about the meeting point between thoughtful visuals and technology that works.</p>
+        <p>Outside product work, you’ll usually find me drawing, playing guitar, or looking for a quiet place to watch the stars.</p>
+        <div class="about-facts"><div><span>Home base</span><strong>Singapore</strong></div><div><span>Studies</span><strong>Information Engineering &amp; Media</strong></div></div>
+      </div>
+    </section>
+
+    <section class="section section-skills" id="toolkit" aria-labelledby="toolkit-title">
+      <div class="skills-copy reveal">
+        <p class="section-kicker"><span>06</span> Skills</p>
+        <h2 id="toolkit-title">What I work<br /><em>with.</em></h2>
+        <p>“I’m most comfortable working at the boundary between design and engineering — where visual craft meets working code.”</p>
+      </div>
+      <div class="toolkit-grid">
+        <div class="toolkit-group reveal">
+          <p class="toolkit-label">Frontend</p>
+          <ul class="toolkit-list">
+            <li class="toolkit-row"><span class="toolkit-name">HTML / CSS</span><span class="toolkit-bar"><span style="--level: 95%"></span></span></li>
+            <li class="toolkit-row"><span class="toolkit-name">JavaScript</span><span class="toolkit-bar"><span style="--level: 88%"></span></span></li>
+            <li class="toolkit-row"><span class="toolkit-name">React</span><span class="toolkit-bar"><span style="--level: 85%"></span></span></li>
+            <li class="toolkit-row"><span class="toolkit-name">TypeScript</span><span class="toolkit-bar"><span style="--level: 80%"></span></span></li>
+          </ul>
+        </div>
+        <div class="toolkit-group reveal">
+          <p class="toolkit-label">Design</p>
+          <ul class="toolkit-list">
+            <li class="toolkit-row"><span class="toolkit-name">Figma</span><span class="toolkit-bar"><span style="--level: 97%"></span></span></li>
+            <li class="toolkit-row"><span class="toolkit-name">UI Design</span><span class="toolkit-bar"><span style="--level: 92%"></span></span></li>
+            <li class="toolkit-row"><span class="toolkit-name">Graphic Design</span><span class="toolkit-bar"><span style="--level: 88%"></span></span></li>
+            <li class="toolkit-row"><span class="toolkit-name">Illustration</span><span class="toolkit-bar"><span style="--level: 85%"></span></span></li>
+          </ul>
+        </div>
+        <div class="toolkit-group reveal">
+          <p class="toolkit-label">Backend / Other</p>
+          <ul class="toolkit-list">
+            <li class="toolkit-row"><span class="toolkit-name">Node.js</span><span class="toolkit-bar"><span style="--level: 65%"></span></span></li>
+            <li class="toolkit-row"><span class="toolkit-name">SQL / Database</span><span class="toolkit-bar"><span style="--level: 65%"></span></span></li>
+          </ul>
+        </div>
+        <div class="toolkit-group reveal">
+          <p class="toolkit-label">Soft skills</p>
+          <ul class="toolkit-list">
+            <li class="toolkit-row"><span class="toolkit-name">Problem Solving</span><span class="toolkit-bar"><span style="--level: 92%"></span></span></li>
+            <li class="toolkit-row"><span class="toolkit-name">Communication</span><span class="toolkit-bar"><span style="--level: 90%"></span></span></li>
+            <li class="toolkit-row"><span class="toolkit-name">Collaboration</span><span class="toolkit-bar"><span style="--level: 93%"></span></span></li>
+          </ul>
         </div>
       </div>
-      <div class="modal-body">
-        <div class="modal-meta">
-          <span class="modal-number" id="modalNumber">— 001</span>
-          <span class="modal-category" id="modalCategory">Web Application</span>
-        </div>
-        <h3 class="modal-title" id="modalTitle">StudySynth</h3>
-        <p class="modal-desc" id="modalDesc">Description goes here.</p>
-        <div class="modal-tech" id="modalTech"></div>
-        <a href="#" class="modal-cta" id="modalCta" target="_blank">Visit Project →</a>
+    </section>
+
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-orbit" aria-hidden="true"></div>
+      <div class="contact-copy reveal">
+        <p class="section-kicker"><span>07</span> Contact</p>
+        <h2 id="contact-title">Let’s make the next<br />experience <em>feel inevitable.</em></h2>
+        <p>Have a UI/UX role, collaboration, or product idea in mind? I’d love to hear what you’re building.</p>
       </div>
-    </div>
-  </div>
+      <div class="contact-actions reveal">
+        <a class="contact-email" href="mailto:celineemilywijaya@gmail.com">celineemilywijaya@gmail.com <span>↗</span></a>
+        <button class="copy-email" type="button" data-email="celineemilywijaya@email.com">Copy email <span aria-hidden="true">⧉</span></button>
+        <div class="contact-socials">
+          <a href="https://www.linkedin.com/in/celine-emily-wijaya/" target="_blank" rel="noopener noreferrer">LinkedIn <span>↗</span></a>
+          <a href="https://github.com/AeruSeishiro" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <!-- ART MODAL -->
-<div class="modal-backdrop" id="artBackdrop" onclick="closeArt()"></div>
-<div class="modal-glass" id="artModal">
-  <button class="modal-close" onclick="closeArt()">✕</button>
-  <div class="art-modal-inner">
-    <div class="art-modal-img-wrap" id="artModalImg"></div>
-    <div class="art-modal-info">
-      <div class="art-modal-num" id="artModalNum">✦</div>
-      <h3 class="art-modal-title" id="artModalTitle">artwork title</h3>
-    </div>
-  </div>
-</div>
+  <footer class="site-footer"><span>© <span id="year">2026</span> Celine Emily Wijaya</span><span>Designed with precision and a little moonlight ✦</span></footer>
 
+  <dialog class="art-dialog" id="artDialog" aria-labelledby="artDialogTitle">
+    <button class="dialog-close" type="button" aria-label="Close artwork preview">×</button>
+    <img id="artDialogImage" src="" alt="" />
+    <div class="art-dialog-caption"><span id="artDialogNumber">Selected artwork</span><h3 id="artDialogTitle"></h3></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="cursor.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

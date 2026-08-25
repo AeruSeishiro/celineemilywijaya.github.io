@@ -1,354 +1,198 @@
-/* ─── CUSTOM CURSOR ─────────────────────────────────────── */
-const cursor = document.getElementById('cursor');
-const ring   = document.getElementById('cursorRing');
+document.body.classList.add('js');
 
-cursor.innerHTML = `
-<svg viewBox="0 0 28 28" width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill="none">
-  <defs>
-    <mask id="crescent-mask">
-      <rect width="28" height="28" fill="white"/>
-      <circle cx="18" cy="10" r="9" fill="black"/>
-    </mask>
-  </defs>
-  <circle cx="13" cy="14" r="9" fill="rgba(220,228,255,0.85)" mask="url(#crescent-mask)"/>
-  <circle cx="13" cy="14" r="9" stroke="rgba(232,228,216,0.55)" stroke-width="0.6" mask="url(#crescent-mask)" fill="none"/>
-  <line x1="14" y1="0"  x2="14" y2="4"  stroke="rgba(200,212,240,0.5)" stroke-width="0.8"/>
-  <line x1="14" y1="24" x2="14" y2="28" stroke="rgba(200,212,240,0.5)" stroke-width="0.8"/>
-  <line x1="0"  y1="14" x2="4"  y2="14" stroke="rgba(200,212,240,0.5)" stroke-width="0.8"/>
-  <line x1="24" y1="14" x2="28" y2="14" stroke="rgba(200,212,240,0.5)" stroke-width="0.8"/>
-</svg>`;
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
 
-const crossH = document.createElement('div');
-crossH.className = 'cursor-cross-h';
-const crossV = document.createElement('div');
-crossV.className = 'cursor-cross-v';
-document.body.appendChild(crossH);
-document.body.appendChild(crossV);
-
-let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  cursor.style.transform = `translate(${mouseX - 14}px, ${mouseY - 14}px)`;
-  crossH.style.transform = `translateY(${mouseY}px)`;
-  crossV.style.transform = `translateX(${mouseX}px)`;
-});
-
-function animateRing() {
-  ringX += (mouseX - ringX - 22) * 0.10;
-  ringY += (mouseY - ringY - 22) * 0.10;
-  ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
-  requestAnimationFrame(animateRing);
-}
-animateRing();
-
-document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.classList.add('is-hovering');
-    ring.style.borderColor = 'rgba(232,228,216,0.5)';
-    ring.style.scale = '1.6';
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.classList.remove('is-hovering');
-    ring.style.borderColor = 'rgba(200,212,240,0.22)';
-    ring.style.scale = '1';
-  });
-});
-
-/* ─── STARS CANVAS ──────────────────────────────────────── */
+/* ─── Background stars ────────────────────────────────────────── */
 const canvas = document.getElementById('stars-canvas');
-const ctx = canvas.getContext('2d');
-let stars = [];
+const starOverlay = document.getElementById('starOverlay');
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = document.body.scrollHeight;
-}
+if (canvas) {
+  const context = canvas.getContext('2d');
+  let stars = [];
+  let animationFrame;
 
-function createStars(count) {
-  stars = [];
-  for (let i = 0; i < count; i++) {
-    stars.push({
+  const createStars = () => {
+    const count = window.innerWidth < 700 ? 55 : 120;
+    stars = Array.from({ length: count }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: Math.random() * 1.5,
-      alpha: Math.random(),
-      speed: Math.random() * 0.005 + 0.002,
+      radius: Math.random() * 1.15 + .15,
+      opacity: Math.random() * .6 + .12,
+      speed: Math.random() * .0018 + .00045,
       phase: Math.random() * Math.PI * 2,
+    }));
+  };
+
+  const resizeCanvas = () => {
+    const scale = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.floor(window.innerWidth * scale);
+    canvas.height = Math.floor(window.innerHeight * scale);
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
+    context.setTransform(scale, 0, 0, scale, 0, 0);
+    createStars();
+  };
+
+  const drawStars = (time = 0) => {
+    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    stars.forEach((star) => {
+      const pulse = reduceMotion.matches ? 1 : .55 + .45 * Math.sin(time * star.speed + star.phase);
+      context.beginPath();
+      context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      context.fillStyle = `rgba(201, 215, 255, ${star.opacity * pulse})`;
+      context.fill();
     });
-  }
-}
+    if (!reduceMotion.matches && !document.hidden) animationFrame = requestAnimationFrame(drawStars);
+  };
 
-function drawStars(t) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  stars.forEach(s => {
-    const a = 0.15 + 0.6 * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(200, 212, 240, ${a})`;
-    ctx.fill();
-  });
-  requestAnimationFrame(drawStars);
-}
-
-resizeCanvas();
-createStars(window.innerWidth <= 600 ? 80 : 300);
-requestAnimationFrame(drawStars);
-window.addEventListener('resize', () => {
   resizeCanvas();
-  createStars(300);
-});
-
-/* ─── FLOATING STAR CHARACTERS ──────────────────────────── */
-const overlay = document.getElementById('starOverlay');
-const symbols = ['✦', '✧', '★', '☆', '✩', '✪', '·'];
-
-for (let i = 0; i < 30; i++) {
-  const s = document.createElement('span');
-  s.className = 'floating-star';
-  s.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-  s.style.left = Math.random() * 100 + '%';
-  s.style.top = Math.random() * 100 + '%';
-  s.style.setProperty('--d', (3 + Math.random() * 5) + 's');
-  s.style.setProperty('--delay', (Math.random() * 5) + 's');
-  overlay.appendChild(s);
+  drawStars();
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(animationFrame);
+    resizeCanvas();
+    drawStars();
+  }, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    cancelAnimationFrame(animationFrame);
+    if (!document.hidden && !reduceMotion.matches) drawStars();
+  });
 }
 
-/* ─── SKILL BARS SCROLL ANIMATION ───────────────────────── */
-const skillBars = document.querySelectorAll('.skill-bar-fill');
-
-// Store target widths and reset to 0 initially
-skillBars.forEach(bar => {
-  bar.dataset.targetWidth = bar.style.width;
-  bar.style.width = '0%';
-});
-
-const skillObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-        bar.style.width = bar.dataset.targetWidth;
-      });
-      skillObserver.unobserve(entry.target); // only animate once
-    }
-  });
-}, { threshold: 0.3 });
-
-const skillsSection = document.getElementById('skills');
-if (skillsSection) skillObserver.observe(skillsSection);
-
-/* ─── PROJECT MODAL ─────────────────────────────────────── */
-const projects = [
-  {
-    number: '— 001',
-    category: 'Web Application',
-    title: 'StudySynth',
-    desc: `StudySynth is an AI-powered study assistant designed specifically for NTU students to make learning more efficient and personalized. The platform allows users to upload lecture materials in various formats—including documents, audio recordings, or MP3 files—and automatically generates concise summaries to help students quickly grasp key concepts.
-
-Beyond summarization, StudySynth enhances active learning by creating interactive quizzes based on selected materials, enabling students to test their understanding and reinforce knowledge.
-
-In addition, the platform includes a dedicated professor dashboard that provides insights into student performance. Through analytics and statistics, educators can identify which topics students struggle with the most, allowing them to adjust their teaching strategies and focus on areas that need more attention.`,
-    tech: ['React', 'Tailwind', 'Next.js'],
-    link: '#',
-    image: 'images/overview.png'
-  },
-  {
-    number: '— 002',
-    category: 'Game Design',
-    title: 'The Last Experiment',
-    desc: 'The Last Experiment is a survival FPS game that follows a professor whose experiment goes horribly wrong, turning people into zombies. Players must fight to survive against waves of enemies while navigating a dangerous environment shaped by the failed experiment. The game emphasizes fast-paced shooting mechanics, tension, and survival strategy, creating an intense and immersive gameplay experience.',
-    tech: ['Unity', 'C#'],
-    link: '#',
-    image: null
-  },
-  {
-    number: '— 003',
-    category: 'Website',
-    title: 'E-Book Shop',
-    desc: 'An e-book shop platform focused on delivering a seamless and user-friendly digital reading experience. I was responsible for designing the UI/UX and creating detailed wireframes, ensuring intuitive navigation and a clean interface for browsing, purchasing, and reading e-books. The design emphasizes usability, accessibility, and a modern aesthetic to enhance the overall user experience.',
-    tech: ['Procreate', 'Figma', 'Adobe Photoshop'],
-    link: '#',
-    image: 'images/ebookshop.png'
-  },
-];
-
-function openProject(index) {
-  const p = projects[index];
-  const modal    = document.getElementById('projectModal');
-  const backdrop = document.getElementById('modalBackdrop');
-
-  document.getElementById('modalNumber').textContent   = p.number;
-  document.getElementById('modalCategory').textContent = p.category;
-  document.getElementById('modalTitle').textContent    = p.title;
-  document.getElementById('modalDesc').innerHTML = p.desc
-    .split('\n\n')
-    .map(para => `<p style="margin-bottom:16px;">${para.trim()}</p>`)
-    .join('');
-
-  // tech pills
-  const techEl = document.getElementById('modalTech');
-  techEl.innerHTML = p.tech.map(t => `<span class="tech-pill">${t}</span>`).join('');
-
-  // link
-  const cta = document.getElementById('modalCta');
-  cta.href = p.link;
-
-  // preview image
-  const preview = document.getElementById('modalPreview');
-  const existing = preview.querySelector('img');
-  if (existing) existing.remove();
-  if (p.image) {
-    const img = document.createElement('img');
-    img.src = p.image;
-    img.alt = p.title;
-    preview.appendChild(img);
-    document.getElementById('modalPreviewLabel').style.display = 'none';
-  } else {
-    document.getElementById('modalPreviewLabel').style.display = '';
+if (starOverlay) {
+  const symbols = ['✦', '·', '✧', '⋆'];
+  const count = reduceMotion.matches ? 8 : 18;
+  for (let index = 0; index < count; index += 1) {
+    const star = document.createElement('span');
+    star.className = 'floating-star';
+    star.textContent = symbols[index % symbols.length];
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.setProperty('--duration', `${4 + Math.random() * 5}s`);
+    star.style.setProperty('--delay', `${Math.random() * -5}s`);
+    starOverlay.appendChild(star);
   }
-
-  backdrop.classList.add('open');
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
 }
 
-function closeProject() {
-  document.getElementById('projectModal').classList.remove('open');
-  document.getElementById('modalBackdrop').classList.remove('open');
-  document.body.style.overflow = '';
-}
+/* ─── Header and mobile navigation ────────────────────────────── */
+const header = document.querySelector('.site-header');
+const navToggle = document.querySelector('.nav-toggle');
+const mobileMenu = document.getElementById('mobileMenu');
 
-// close on Escape key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeProject();
+const setMenuState = (open) => {
+  if (!navToggle || !mobileMenu) return;
+  navToggle.setAttribute('aria-expanded', String(open));
+  navToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  mobileMenu.hidden = !open;
+  document.body.classList.toggle('menu-open', open);
+  if (open) mobileMenu.querySelector('a')?.focus();
+};
+
+navToggle?.addEventListener('click', () => setMenuState(navToggle.getAttribute('aria-expanded') !== 'true'));
+mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuState(false)));
+
+window.addEventListener('scroll', () => {
+  header?.classList.toggle('is-scrolled', window.scrollY > 24);
+}, { passive: true });
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && navToggle?.getAttribute('aria-expanded') === 'true') setMenuState(false);
 });
 
-/* ─── 3D ART CAROUSEL ───────────────────────────────────── */
-const artCarousel = document.getElementById('artCarousel');
-const artCards    = artCarousel ? Array.from(artCarousel.querySelectorAll('.art-card')) : [];
-const totalCards  = artCards.length;
-const angleStep   = 360 / totalCards;
-
-/* smaller radius on mobile */
-const getRadius = () => window.innerWidth <= 600 ? 260 : window.innerWidth <= 900 ? 340 : 420;
-
-let artAngle   = 0;
-let rafId      = null;
-let isSpinning = false;
-
-/* position each card */
-function positionCards() {
-  const r = getRadius();
-  artCards.forEach((card, i) => {
-    card.style.transform = `rotateY(${i * angleStep}deg) translateZ(${r}px)`;
-  });
-}
-positionCards();
-window.addEventListener('resize', positionCards);
-
-function updateCarousel() {
-  if (artCarousel) artCarousel.style.transform = `rotateY(${artAngle}deg)`;
-  artCards.forEach((card, i) => {
-    const normalized = (((i * angleStep + artAngle) % 360) + 360) % 360;
-    const isFront = normalized < angleStep / 2 || normalized > 360 - angleStep / 2;
-    card.classList.toggle('is-front', isFront);
-  });
+/* ─── Reveal content progressively ────────────────────────────── */
+const revealElements = document.querySelectorAll('.reveal');
+if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+  revealElements.forEach((element) => element.classList.add('is-visible'));
+} else {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: .12, rootMargin: '0px 0px -25px' });
+  revealElements.forEach((element) => revealObserver.observe(element));
 }
 
-/* RAF-based spin — much smoother, no jank on mobile */
-const spinSpeed = 0.15; /* degrees per frame — lower = slower */
-function spinLoop() {
-  if (!isSpinning) return;
-  artAngle -= spinSpeed;
-  updateCarousel();
-  rafId = requestAnimationFrame(spinLoop);
+/* ─── Mark the active section in desktop navigation ───────────── */
+const desktopLinks = Array.from(document.querySelectorAll('.nav-desktop-links a'));
+const trackedSections = desktopLinks
+  .map((link) => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+
+if ('IntersectionObserver' in window && trackedSections.length) {
+  const navObserver = new IntersectionObserver((entries) => {
+    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    desktopLinks.forEach((link) => {
+      const active = link.getAttribute('href') === `#${visible.target.id}`;
+      if (active) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+  }, { rootMargin: '-32% 0px -55%', threshold: [0, .2, .5] });
+  trackedSections.forEach((section) => navObserver.observe(section));
 }
 
-function startSpin() {
-  if (isSpinning) return;
-  isSpinning = true;
-  rafId = requestAnimationFrame(spinLoop);
-}
+/* ─── Artwork dialog ─────────────────────────────────────────── */
+const artDialog = document.getElementById('artDialog');
+const artDialogImage = document.getElementById('artDialogImage');
+const artDialogTitle = document.getElementById('artDialogTitle');
+const artDialogNumber = document.getElementById('artDialogNumber');
+const artCards = document.querySelectorAll('.art-card');
 
-function stopSpin() {
-  isSpinning = false;
-  cancelAnimationFrame(rafId);
-}
+const cursorLayerElements = () => [
+  document.getElementById('cursor'),
+  document.getElementById('cursorRing'),
+  document.querySelector('.cursor-cross-h'),
+  document.querySelector('.cursor-cross-v'),
+].filter(Boolean);
 
-/* arrows */
-let snapIndex = 0;
-document.getElementById('artPrev')?.addEventListener('click', () => {
-  stopSpin();
-  snapIndex = (snapIndex + 1) % totalCards;
-  artAngle = -snapIndex * angleStep;
-  updateCarousel();
-  setTimeout(startSpin, 2500);
-});
-
-document.getElementById('artNext')?.addEventListener('click', () => {
-  stopSpin();
-  snapIndex = (snapIndex - 1 + totalCards) % totalCards;
-  artAngle = -snapIndex * angleStep;
-  updateCarousel();
-  setTimeout(startSpin, 2500);
-});
-
-/* pause on hover — desktop only */
-if (artCarousel && window.matchMedia('(hover: hover)').matches) {
-  artCarousel.addEventListener('mouseenter', stopSpin);
-  artCarousel.addEventListener('mouseleave', startSpin);
-}
-
-/* touch swipe */
-let touchStartX = 0;
-if (artCarousel) {
-  artCarousel.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    stopSpin();
-  }, { passive: true });
-  artCarousel.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) {
-      snapIndex = diff > 0
-        ? (snapIndex - 1 + totalCards) % totalCards
-        : (snapIndex + 1) % totalCards;
-      artAngle = -snapIndex * angleStep;
-      updateCarousel();
-    }
-    setTimeout(startSpin, 2500);
-  }, { passive: true });
-}
-
-/* click to open modal */
-artCards.forEach((card, i) => {
+artCards.forEach((card, index) => {
   card.addEventListener('click', () => {
-    stopSpin();
-    const img   = card.querySelector('img');
-    const label = card.querySelector('.art-card-label');
-    document.getElementById('artModalImg').innerHTML    = `<img src="${img.src}" alt="${img.alt}" />`;
-    document.getElementById('artModalNum').textContent  = `✦ ${String(i + 1).padStart(2, '0')}`;
-    document.getElementById('artModalTitle').textContent = label
-      ? label.textContent.replace('✦', '').trim()
-      : img.alt;
-    document.getElementById('artBackdrop').classList.add('open');
-    document.getElementById('artModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    if (!artDialog || !artDialogImage || !artDialogTitle || !artDialogNumber) return;
+    artDialogImage.src = card.dataset.artSrc || '';
+    artDialogImage.alt = card.dataset.artAlt || '';
+    artDialogTitle.textContent = card.dataset.artTitle || 'Selected artwork';
+    artDialogNumber.textContent = `Artwork ${String(index + 1).padStart(2, '0')}`;
+    artDialog.showModal();
+    // Native <dialog> renders in the browser's top layer, above any
+    // fixed-position element regardless of z-index — move the custom
+    // cursor into it so it stays visible while the dialog is open.
+    cursorLayerElements().forEach((el) => artDialog.appendChild(el));
   });
 });
 
-function closeArt() {
-  document.getElementById('artModal')?.classList.remove('open');
-  document.getElementById('artBackdrop')?.classList.remove('open');
-  document.body.style.overflow = '';
-  startSpin();
-}
+artDialog?.querySelector('.dialog-close')?.addEventListener('click', () => artDialog.close());
+artDialog?.addEventListener('click', (event) => {
+  if (event.target === artDialog) artDialog.close();
+});
+artDialog?.addEventListener('close', () => {
+  cursorLayerElements().forEach((el) => document.body.appendChild(el));
+});
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArt(); });
+/* ─── Contact conversion ─────────────────────────────────────── */
+const copyButton = document.querySelector('.copy-email');
+const toast = document.getElementById('toast');
+let toastTimeout;
 
-/* reduce stars on mobile for performance */
-if (window.innerWidth <= 600) {
-  createStars(80);
-} 
+const showToast = (message) => {
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('is-visible');
+  clearTimeout(toastTimeout);
+  toastTimeout = window.setTimeout(() => toast.classList.remove('is-visible'), 2600);
+};
 
-startSpin();
+copyButton?.addEventListener('click', async () => {
+  const email = copyButton.dataset.email;
+  if (!email) return;
+  try {
+    await navigator.clipboard.writeText(email);
+    showToast('Email copied — thank you for reaching out.');
+  } catch {
+    showToast(email);
+  }
+});
+
+const year = document.getElementById('year');
+if (year) year.textContent = new Date().getFullYear();
