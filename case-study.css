@@ -56,6 +56,20 @@ body.case-page {
 .case-experiment-readout strong { color: #ffaccd; font-family: var(--display); font-size: 1.25rem; font-style: italic; letter-spacing: .04em; }
 .case-experiment-visual > p { position: absolute; bottom: 25px; left: 30px; margin: 0; color: #f0c6d8; font-family: var(--display); font-size: 1.55rem; font-style: italic; }
 
+.case-dinema-visual { position: relative; display: grid; place-items: center; min-height: 590px; overflow: hidden; border: 1px solid rgba(255, 214, 140, .3); background: radial-gradient(circle at 50% 34%, rgba(255, 214, 140, .16), transparent 55%), linear-gradient(160deg, #1c1332 0%, #0b0d1f 74%); box-shadow: 0 35px 90px rgba(0, 0, 0, .34), 0 0 80px rgba(255, 214, 140, .12); }
+.case-dinema-stars { position: absolute; inset: 0; }
+.case-dinema-stars span { position: absolute; color: rgba(255, 224, 168, .75); }
+.case-dinema-stars span:nth-child(1) { top: 14%; left: 18%; font-size: .8rem; }
+.case-dinema-stars span:nth-child(2) { top: 22%; left: 82%; font-size: .6rem; }
+.case-dinema-stars span:nth-child(3) { top: 68%; left: 12%; font-size: .55rem; }
+.case-dinema-stars span:nth-child(4) { top: 76%; left: 86%; font-size: .7rem; }
+.case-dinema-stars span:nth-child(5) { top: 42%; left: 8%; font-size: .45rem; }
+.case-dinema-stars span:nth-child(6) { top: 8%; left: 55%; font-size: .5rem; }
+.case-dinema-stars span:nth-child(7) { top: 88%; left: 48%; font-size: .5rem; }
+.case-dinema-glow { position: absolute; top: 10%; left: 50%; width: 220px; height: 220px; background: radial-gradient(circle, rgba(255, 224, 168, .5), transparent 70%); filter: blur(6px); transform: translateX(-50%); }
+.case-dinema-mark { position: relative; z-index: 1; max-width: 90%; color: var(--ink); font-family: var(--display); font-size: clamp(2.2rem, 4.6vw, 3.6rem); font-style: italic; font-weight: 600; line-height: 1.15; text-align: center; text-shadow: 0 0 40px rgba(255, 214, 140, .4); }
+.case-dinema-visual > p { position: absolute; z-index: 1; bottom: 25px; left: 30px; margin: 0; color: #ffe1ad; font-family: var(--display); font-size: 1.15rem; font-style: italic; letter-spacing: .02em; }
+
 .case-snapshot { width: min(1496px, 100%); margin: 0 auto; padding: 0 48px 140px; }
 .snapshot-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1.2fr; gap: 0; border: 1px solid var(--line); background: var(--line); }
 .snapshot-grid > div { min-height: 166px; padding: 24px; background: rgba(11, 17, 39, .9); }
@@ -135,6 +149,9 @@ body.case-page {
   .case-experiment-readout { right: 17px; bottom: 16px; font-size: .44rem; }
   .case-experiment-readout strong { font-size: 1rem; }
   .case-experiment-visual > p { bottom: 15px; left: 17px; font-size: 1.12rem; }
+  .case-dinema-visual { min-height: 330px; }
+  .case-dinema-mark { font-size: 2rem; }
+  .case-dinema-visual > p { bottom: 15px; left: 17px; font-size: 1rem; }
   .case-snapshot { padding: 0 24px 85px; }
   .case-snapshot .case-kicker { margin-bottom: 15px; }
   .snapshot-grid { grid-template-columns: 1fr; }

@@ -54,33 +54,35 @@ const caseStudies = {
     ],
     validate: ['Can players recognise their most important state information at a glance?', 'Do the game’s cues create tension without becoming visual noise?', 'Does the encounter loop encourage meaningful decisions rather than repetition?'],
   },
-  'ebook-shop': {
-    slug: 'ebook-shop',
+  'upon-the-star': {
+    slug: 'upon-the-star',
     number: '03',
-    category: 'UI/UX design · Commerce concept',
-    title: 'E-book Shop',
-    headline: 'Making a digital bookstore feel simple to browse, buy, and return to.',
-    summary: 'E-book Shop is a digital reading and commerce concept focused on a smooth experience for browsing titles, making a purchase, and moving into reading without unnecessary friction.',
+    category: 'UI/UX design · Entertainment concept',
+    title: 'Upon the Star',
+    headline: 'A cinema booking experience built entirely around Disney.',
+    summary: 'Upon the Star is a concept cinema-booking platform where every film on screen is a Disney title — from browsing and a timed seat hold through to a QR-code ticket you scan on the way in.',
     role: 'UI/UX design',
     platform: 'Responsive web concept',
-    tools: ['Figma', 'Procreate', 'Adobe Photoshop'],
-    deliverables: 'Wireframes, interface direction, browsing and purchase flow',
-    image: 'images/ebookshop.png',
-    imageAlt: 'E-book shop interface design',
-    challenge: 'An e-book experience needs to balance two mindsets: discovering the right title and getting into the reading experience. The interface should help people move between both without making either feel secondary.',
-    focus: 'A calm commerce journey that makes content easy to discover while keeping purchasing and reading transitions clear.',
+    tools: ['Figma', 'Procreate', 'Adobe Illustrator'],
+    deliverables: 'Wireframes, interface direction, end-to-end booking flow from seat selection to ticket',
+    visual: 'dinema',
+    challenge: 'A themed booking site has to do two things at once: feel unmistakably Disney, and still carry someone through the practical parts of buying a ticket — signing in, holding a seat, paying before a timer runs out — without any of that friction feeling like a chore.',
+    focus: 'A booking journey where Disney’s identity comes through in the interface itself — colour, motion, and language — while sign-in, the seat hold, and the ticket handoff stay clear and low-stress.',
     decisions: [
-      { title: 'Prioritise content discovery', text: 'The visual direction gives titles and categories room to lead, so the browsing experience can feel editorial rather than crowded.' },
-      { title: 'Keep the purchase path calm', text: 'The journey is structured to reduce unnecessary decisions between interest and checkout, making the path to ownership easy to understand.' },
-      { title: 'Connect purchase to reading', text: 'The product concept treats reading as the destination of the commerce flow, not an unrelated experience after the transaction.' },
+      { title: 'Gate sign-in at the right moment', text: 'Google sign-in only appears right before a seat is claimed, not at landing — so browsing the catalogue stays frictionless, and an account only matters once someone is actually committing to a seat.' },
+      { title: 'Make the seat hold impossible to miss', text: 'A selected seat is held for exactly 10 minutes before it releases back to everyone else. That countdown needed to be visible and honest throughout checkout, not a rule someone discovers after losing their seat.' },
+      { title: 'Give the ticket two homes', text: 'After payment, a QR-code ticket is emailed automatically and also saved under a "My Tickets" area on the site — so it is easy to find again even if the email gets buried, and staff can scan it straight from a phone at the door.' },
     ],
     flow: [
-      { title: '01 · Browse', text: 'Explore titles and categories through an easy-to-scan catalogue.' },
-      { title: '02 · Consider', text: 'Review a book with enough information to make a confident choice.' },
-      { title: '03 · Purchase', text: 'Move through a focused checkout flow with minimal interruption.' },
-      { title: '04 · Read', text: 'Transition into a digital reading experience with continuity.' },
+      { title: '01 · Browse', text: 'Land on Upon the Star and explore the Disney-only catalogue.' },
+      { title: '02 · Choose a room', text: 'Pick a screening and a room tier — Small, Regular, or Premier.' },
+      { title: '03 · Sign in', text: 'Sign in with Google before a seat can be claimed.' },
+      { title: '04 · Pick a seat', text: 'Select a seat on the map — it is held for 10 minutes.' },
+      { title: '05 · Pay', text: 'Complete payment before the hold expires, or the seat releases to someone else.' },
+      { title: '06 · Get your ticket', text: 'A QR-code ticket arrives by email and is saved under "My Tickets."' },
+      { title: '07 · Enter', text: 'Show the QR code at the cinema for staff to scan.' },
     ],
-    validate: ['Can a first-time visitor find a relevant title quickly?', 'Is the handoff from book discovery to checkout clear and reassuring?', 'Do people understand how to return to purchased books when they come back?'],
+    validate: ['Is a 10-minute hold long enough to feel fair without causing unnecessary drop-off at payment?', 'Does deferring Google sign-in until seat selection actually reduce friction, or just move the drop-off point later?', 'Is "My Tickets" easy enough to find that people would use it instead of searching their email?'],
   },
 };
 
@@ -115,8 +117,19 @@ const experimentVisual = `
   </div>
 `;
 
+const dinemaVisual = `
+  <div class="case-dinema-visual" aria-label="Disney-themed cinema interface placeholder" role="img">
+    <div class="case-dinema-stars"><span>✦</span><span>✧</span><span>✦</span><span>⋆</span><span>✧</span><span>✦</span><span>⋆</span></div>
+    <div class="case-dinema-glow"></div>
+    <div class="case-dinema-mark">${study.title}</div>
+    <p>Poster artwork coming soon</p>
+  </div>
+`;
+
 const projectVisual = study.visual === 'experiment'
   ? experimentVisual
+  : study.visual === 'dinema'
+  ? dinemaVisual
   : `<figure class="case-image-visual"><img src="${study.image}" alt="${study.imageAlt}" /><figcaption>${study.title} · project interface</figcaption></figure>`;
 
 document.title = `${study.title} Case Study — Celine Emily`;

@@ -10,7 +10,9 @@ const starOverlay = document.getElementById('starOverlay');
 if (canvas) {
   const context = canvas.getContext('2d');
   let stars = [];
+  let fallingStars = [];
   let animationFrame;
+  let fallingStarTimer;
 
   const createStars = () => {
     const count = window.innerWidth < 700 ? 55 : 120;
@@ -34,6 +36,60 @@ if (canvas) {
     createStars();
   };
 
+  const spawnFallingStar = () => {
+    const angle = (35 + Math.random() * 20) * (Math.PI / 180);
+    const speed = 2.6 + Math.random() * 1.6;
+    fallingStars.push({
+      x: Math.random() * window.innerWidth * .75 + window.innerWidth * .1,
+      y: Math.random() * window.innerHeight * .3 - 40,
+      dx: Math.cos(angle),
+      dy: Math.sin(angle),
+      speed,
+      length: 70 + Math.random() * 50,
+      opacity: .4 + Math.random() * .25,
+      life: 1,
+    });
+  };
+
+  const scheduleFallingStar = () => {
+    fallingStarTimer = setTimeout(() => {
+      const maxConcurrent = window.innerWidth < 700 ? 1 : 2;
+      if (!reduceMotion.matches && !document.hidden && fallingStars.length < maxConcurrent) spawnFallingStar();
+      scheduleFallingStar();
+    }, 3500 + Math.random() * 5000);
+  };
+
+  const drawFallingStars = () => {
+    fallingStars = fallingStars.filter((star) => {
+      star.x += star.dx * star.speed;
+      star.y += star.dy * star.speed;
+      star.life -= .011;
+      if (star.life <= 0 || star.x > window.innerWidth + 100 || star.y > window.innerHeight + 100) return false;
+
+      const tailX = star.x - star.dx * star.length;
+      const tailY = star.y - star.dy * star.length;
+      const alpha = star.opacity * star.life;
+      const gradient = context.createLinearGradient(star.x, star.y, tailX, tailY);
+      gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
+      gradient.addColorStop(.4, `rgba(201, 215, 255, ${alpha * .5})`);
+      gradient.addColorStop(1, 'rgba(201, 215, 255, 0)');
+      context.strokeStyle = gradient;
+      context.lineWidth = 1.6;
+      context.lineCap = 'round';
+      context.beginPath();
+      context.moveTo(star.x, star.y);
+      context.lineTo(tailX, tailY);
+      context.stroke();
+
+      context.beginPath();
+      context.arc(star.x, star.y, 1.4, 0, Math.PI * 2);
+      context.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+      context.fill();
+
+      return true;
+    });
+  };
+
   const drawStars = (time = 0) => {
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
     stars.forEach((star) => {
@@ -43,11 +99,13 @@ if (canvas) {
       context.fillStyle = `rgba(201, 215, 255, ${star.opacity * pulse})`;
       context.fill();
     });
+    drawFallingStars();
     if (!reduceMotion.matches && !document.hidden) animationFrame = requestAnimationFrame(drawStars);
   };
 
   resizeCanvas();
   drawStars();
+  if (!reduceMotion.matches) scheduleFallingStar();
   window.addEventListener('resize', () => {
     cancelAnimationFrame(animationFrame);
     resizeCanvas();
@@ -56,6 +114,11 @@ if (canvas) {
   document.addEventListener('visibilitychange', () => {
     cancelAnimationFrame(animationFrame);
     if (!document.hidden && !reduceMotion.matches) drawStars();
+  });
+  reduceMotion.addEventListener('change', () => {
+    clearTimeout(fallingStarTimer);
+    fallingStars = [];
+    if (!reduceMotion.matches) scheduleFallingStar();
   });
 }
 
