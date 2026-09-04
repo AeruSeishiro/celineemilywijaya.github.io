@@ -4,7 +4,7 @@ body.case-page {
     radial-gradient(circle at 10% 58%, rgba(42, 54, 130, .09), transparent 30rem),
     var(--night);
 }
-#case-stars { position: fixed; z-index: 0; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+#case-stars { position: fixed; z-index: 0; inset: 0; width: 100%; height: 100%; pointer-events: none; transition: opacity .6s ease; }
 .case-header, #case-study, .case-footer { position: relative; z-index: 1; }
 .case-header {
   display: flex;
@@ -178,3 +178,60 @@ body.case-page {
 @media (prefers-reduced-motion: reduce) {
   .case-next-card { transition: none; }
 }
+
+/* ─── Day theme (clear blue sky) — case study page ───────────── */
+:root[data-theme="day"] body.case-page {
+  background: linear-gradient(180deg, #b7d9f2 0%, #d0e5f6 46%, #e2eef8 100%) fixed;
+}
+:root[data-theme="day"] #case-stars { opacity: 0; }
+
+:root[data-theme="day"] .case-header {
+  border-bottom-color: rgba(40, 70, 110, .16);
+  background: rgba(214, 233, 248, .82);
+}
+:root[data-theme="day"] .case-header-actions .case-request:hover { background: rgba(255, 255, 255, .4); }
+
+:root[data-theme="day"] .case-image-visual {
+  border-color: rgba(40, 70, 110, .28);
+  background: linear-gradient(145deg, #dcebf8, #cadff1);
+}
+
+:root[data-theme="day"] .snapshot-grid > div { background: rgba(255, 255, 255, .78); }
+:root[data-theme="day"] .case-tags li { border-color: rgba(40, 70, 110, .4); }
+
+:root[data-theme="day"] .case-decision {
+  background: linear-gradient(145deg, rgba(255, 255, 255, .68), rgba(224, 236, 248, .64));
+}
+:root[data-theme="day"] .case-validation {
+  background: linear-gradient(135deg, rgba(255, 255, 255, .6), rgba(220, 234, 248, .74));
+}
+:root[data-theme="day"] .case-validation li { border-bottom-color: rgba(40, 70, 110, .22); }
+
+:root[data-theme="day"] .case-next-card { background: rgba(255, 255, 255, .62); }
+:root[data-theme="day"] .case-next-card:hover { background: rgba(224, 236, 248, .82); }
+
+/* ─── Sunset theme — case study page ─────────────────────────── */
+:root[data-theme="sunset"] body.case-page {
+  background: linear-gradient(180deg,
+    #4a3568 0%, #6d3b60 18%, #8f4557 34%, #9e5344 50%,
+    #7a4048 66%, #472c44 80%, #221a30 91%, #0c0c18 100%) fixed;
+}
+:root[data-theme="sunset"] #case-stars { opacity: var(--dusk); }
+
+:root[data-theme="sunset"] .case-header {
+  border-bottom-color: rgba(255, 205, 175, .16);
+  background: rgba(30, 18, 34, .82);
+}
+:root[data-theme="sunset"] .case-image-visual {
+  border-color: rgba(255, 205, 175, .24);
+  background: linear-gradient(145deg, #2a1a38, #140e1e);
+}
+:root[data-theme="sunset"] .snapshot-grid > div { background: rgba(38, 24, 50, .9); }
+:root[data-theme="sunset"] .case-decision {
+  background: linear-gradient(145deg, rgba(44, 28, 56, .82), rgba(18, 13, 26, .86));
+}
+:root[data-theme="sunset"] .case-validation {
+  background: linear-gradient(135deg, rgba(60, 38, 62, .72), rgba(16, 12, 24, .88));
+}
+:root[data-theme="sunset"] .case-next-card { background: rgba(36, 22, 44, .66); }
+:root[data-theme="sunset"] .case-next-card:hover { background: rgba(52, 32, 60, .82); }

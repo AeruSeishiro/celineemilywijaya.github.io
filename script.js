@@ -259,3 +259,58 @@ copyButton?.addEventListener('click', async () => {
 
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
+
+/* ─── Theme: cycles day → sunset → night; also auto-picks by time ── */
+const THEME_KEY = 'theme-pref';
+const themeRoot = document.documentElement;
+const themeToggle = document.getElementById('themeToggle');
+const THEME_CYCLE = ['day', 'sunset', 'night'];
+const themeMeta = { day: '#bcdcf3', sunset: '#4a3568', night: '#060713' };
+const themeIcon = { day: '☀', sunset: '◐', night: '☾' };
+
+const timeBasedTheme = () => {
+  const hour = new Date().getHours();
+  if (hour >= 17 && hour < 19) return 'sunset'; /* 5pm–7pm */
+  if (hour >= 7 && hour < 17) return 'day';
+  return 'night';
+};
+
+/* sunset only: 0 at the top of the page → 1 once scrolled near the bottom,
+   eased so it stays golden for the first stretch then falls into night */
+const updateDusk = () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const p = max > 0 ? window.scrollY / max : 0;
+  const dusk = Math.min(1, (Math.max(0, p) / 0.9) ** 1.5);
+  themeRoot.style.setProperty('--dusk', dusk.toFixed(3));
+};
+
+const applyTheme = (theme) => {
+  themeRoot.dataset.theme = theme;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeMeta[theme] || themeMeta.night);
+  if (themeToggle) {
+    themeToggle.textContent = themeIcon[theme] || themeIcon.night;
+    themeToggle.setAttribute('aria-label', `Theme: ${theme}. Click to change.`);
+    themeToggle.removeAttribute('aria-pressed');
+  }
+  if (theme === 'sunset') updateDusk();
+  window.dispatchEvent(new Event('themechange'));
+};
+
+let storedTheme = null;
+try { storedTheme = localStorage.getItem(THEME_KEY); } catch {}
+applyTheme(THEME_CYCLE.includes(storedTheme) ? storedTheme : timeBasedTheme());
+
+themeToggle?.addEventListener('click', () => {
+  const next = THEME_CYCLE[(THEME_CYCLE.indexOf(themeRoot.dataset.theme) + 1) % THEME_CYCLE.length];
+  try { localStorage.setItem(THEME_KEY, next); } catch {}
+  applyTheme(next);
+});
+
+let duskTicking = false;
+const onDuskScroll = () => {
+  if (themeRoot.dataset.theme !== 'sunset' || duskTicking) return;
+  duskTicking = true;
+  requestAnimationFrame(() => { updateDusk(); duskTicking = false; });
+};
+window.addEventListener('scroll', onDuskScroll, { passive: true });
+window.addEventListener('resize', onDuskScroll, { passive: true });

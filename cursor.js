@@ -8,7 +8,7 @@
 
   document.body.classList.add('has-custom-cursor');
 
-  cursor.innerHTML = `
+  const MOON_CURSOR = `
 <svg viewBox="0 0 28 28" width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill="none">
   <defs>
     <mask id="crescent-mask">
@@ -23,6 +23,28 @@
   <line x1="0"  y1="14" x2="4"  y2="14" stroke="rgba(200,212,240,0.5)" stroke-width="0.8"/>
   <line x1="24" y1="14" x2="28" y2="14" stroke="rgba(200,212,240,0.5)" stroke-width="0.8"/>
 </svg>`;
+
+  const SUN_CURSOR = `
+<svg viewBox="0 0 28 28" width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <circle cx="14" cy="14" r="5.5" fill="rgba(255,216,140,0.95)" stroke="rgba(255,188,90,0.7)" stroke-width="0.8"/>
+  <g stroke="rgba(255,200,110,0.85)" stroke-width="1.4" stroke-linecap="round">
+    <line x1="14" y1="1"    x2="14" y2="5"/>
+    <line x1="14" y1="23"   x2="14" y2="27"/>
+    <line x1="1"  y1="14"   x2="5"  y2="14"/>
+    <line x1="23" y1="14"   x2="27" y2="14"/>
+    <line x1="4.6"  y1="4.6"  x2="7.6"  y2="7.6"/>
+    <line x1="20.4" y1="20.4" x2="23.4" y2="23.4"/>
+    <line x1="4.6"  y1="23.4" x2="7.6"  y2="20.4"/>
+    <line x1="20.4" y1="7.6"  x2="23.4" y2="4.6"/>
+  </g>
+</svg>`;
+
+  const applyCursorTheme = () => {
+    const theme = document.documentElement.dataset.theme;
+    cursor.innerHTML = (theme === 'day' || theme === 'sunset') ? SUN_CURSOR : MOON_CURSOR;
+  };
+  applyCursorTheme();
+  window.addEventListener('themechange', applyCursorTheme);
 
   const crossH = document.createElement('div');
   crossH.className = 'cursor-cross-h';
