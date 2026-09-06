@@ -154,6 +154,14 @@ const setMenuState = (open) => {
 navToggle?.addEventListener('click', () => setMenuState(navToggle.getAttribute('aria-expanded') !== 'true'));
 mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuState(false)));
 
+/* brand click returns to the top — #top is a fixed element, so the browser won't scroll to it on its own */
+document.querySelector('.nav-brand')?.addEventListener('click', (event) => {
+  event.preventDefault();
+  setMenuState(false);
+  window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+  history.replaceState(null, '', location.pathname + location.search);
+});
+
 window.addEventListener('scroll', () => {
   header?.classList.toggle('is-scrolled', window.scrollY > 24);
 }, { passive: true });
