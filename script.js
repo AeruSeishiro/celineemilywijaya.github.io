@@ -185,6 +185,40 @@ if (reduceMotion.matches || !('IntersectionObserver' in window)) {
   revealElements.forEach((element) => revealObserver.observe(element));
 }
 
+/* ─── Case study category filters ─────────────────────────────── */
+const projectControls = document.getElementById('project-controls');
+const projectGrid = document.getElementById('project-grid');
+const projectFilterStatus = document.getElementById('project-filter-status');
+
+if (projectControls && projectGrid && projectFilterStatus) {
+  const filterButtons = projectControls.querySelectorAll('[data-filter]');
+  const projectCards = Array.from(projectGrid.querySelectorAll('[data-categories]'));
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.filter;
+      let visibleCount = 0;
+
+      projectCards.forEach((card) => {
+        const matches = category === 'all' || card.dataset.categories.split(/\s+/).includes(category);
+        card.hidden = !matches;
+        if (matches) {
+          visibleCount += 1;
+          card.classList.add('is-visible');
+        }
+      });
+
+      filterButtons.forEach((filter) => filter.setAttribute('aria-pressed', String(filter === button)));
+      projectGrid.classList.toggle('is-filtered', category !== 'all');
+      const categoryLabel = category === 'all' ? '' : ` in ${button.textContent.trim()}`;
+      projectFilterStatus.textContent = `${visibleCount} ${visibleCount === 1 ? 'case study' : 'case studies'}${categoryLabel}`;
+    });
+  });
+
+  projectFilterStatus.textContent = `${projectCards.length} ${projectCards.length === 1 ? 'case study' : 'case studies'}`;
+  projectControls.hidden = false;
+}
+
 /* ─── Mark the active section in desktop navigation ───────────── */
 const desktopLinks = Array.from(document.querySelectorAll('.nav-desktop-links a'));
 const trackedSections = desktopLinks

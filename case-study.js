@@ -27,32 +27,18 @@ const caseStudies = {
     ],
     validate: ['Can students understand the upload-to-summary flow without guidance?', 'Does the quiz experience feel clearly connected to the material it is based on?', 'Which dashboard signals help an educator recognise a topic that needs attention?'],
   },
-  'last-experiment': {
-    slug: 'last-experiment',
+  heirloom: {
+    slug: 'heirloom',
     number: '02',
-    category: 'Interaction design · Game concept',
-    title: 'The Last Experiment',
-    headline: 'Designing tension, feedback, and fast decisions in a survival FPS.',
-    summary: 'The Last Experiment is a survival FPS concept where a professor must fight through the consequences of a failed experiment. The work explores how pacing, feedback, and environmental tension can support an immersive survival loop.',
+    category: 'Game development · Ongoing project',
+    title: 'The Heirloom',
+    headline: 'An online multiplayer deduction game.',
+    summary: 'The Heirloom is an online multiplayer deduction game currently in development using Unreal Engine 5 and Blender.',
     role: 'Game design & development',
-    platform: 'Desktop game concept',
-    tools: ['Unity', 'C#'],
-    deliverables: 'Survival FPS concept, gameplay interaction, tension and feedback exploration',
-    visual: 'experiment',
-    challenge: 'A survival game asks players to make rapid choices under pressure. The interaction design has to make threat, urgency, and available actions legible without removing the uncertainty that creates tension.',
-    focus: 'A tense encounter loop where environmental signals, player feedback, and escalating danger work together instead of competing for attention.',
-    decisions: [
-      { title: 'Signal risk without overexplaining', text: 'Visual cues and pacing can point players toward danger while preserving the uncertainty that makes a survival encounter feel alive.' },
-      { title: 'Keep critical feedback scannable', text: 'The player needs to recognise important state changes quickly. Interface and environmental feedback should support that decision without taking over the screen.' },
-      { title: 'Let pressure shape the rhythm', text: 'The concept treats tension as a sequence: discovery, reaction, commitment, and recovery—not a constant wall of intensity.' },
-    ],
-    flow: [
-      { title: '01 · Enter', text: 'Read the environment and recognise a potential threat.' },
-      { title: '02 · Decide', text: 'Choose how to navigate, engage, or conserve resources.' },
-      { title: '03 · Respond', text: 'Act under pressure while the game communicates changing state.' },
-      { title: '04 · Adapt', text: 'Use the outcome to adjust strategy for the next encounter.' },
-    ],
-    validate: ['Can players recognise their most important state information at a glance?', 'Do the game’s cues create tension without becoming visual noise?', 'Does the encounter loop encourage meaningful decisions rather than repetition?'],
+    platform: 'Online multiplayer game',
+    tools: ['Unreal Engine 5', 'Blender'],
+    status: 'In development',
+    visual: 'heirloom',
   },
   'upon-the-star': {
     slug: 'upon-the-star',
@@ -84,6 +70,35 @@ const caseStudies = {
     ],
     validate: ['Is a 10-minute hold long enough to feel fair without causing unnecessary drop-off at payment?', 'Does deferring Google sign-in until seat selection actually reduce friction, or just move the drop-off point later?', 'Is "My Tickets" easy enough to find that people would use it instead of searching their email?'],
   },
+  'acorn-lab': {
+    slug: 'acorn-lab',
+    number: '04',
+    category: 'UI/UX design · Mobile health concept',
+    title: 'Acorn Lab',
+    headline: 'A gentler way to remember medication and grow a daily routine.',
+    summary: 'Acorn Lab is a medication reminder app concept that connects daily dose logging with a growing forest and Pip, a squirrel companion. I created the full concept, wireframes, and a 14-screen interactive Figma prototype spanning the Home, Forest, and Record experiences.',
+    role: 'Concept development, wireframing & UI/UX design',
+    platform: 'Mobile app concept · Adults aged 21–70',
+    tools: ['Figma', 'Wireframing', 'Interactive prototyping'],
+    deliverables: 'Full concept, wireframes, 14-screen prototype, design rationale & 15-slide presentation',
+    image: 'images/acorn-lab.png',
+    imageAlt: 'Acorn Lab app screens showing a dose reminder, a logged-dose celebration with Pip, and a growing forest',
+    challenge: 'The design challenge was to make medication reminders clear and supportive, while keeping the record of taken and missed doses honest. The concept needed to encourage a routine without making a missed day feel like a failure.',
+    focus: 'I developed the concept and wireframes around three connected experiences: a clear next dose on Home, a Forest that reflects logged days, and a practical Record for reviewing medication history. The visual design follows Acorn’s Fraunces and Plus Jakarta Sans brand system.',
+    decisions: [
+      { title: 'Make the next dose easy to act on', text: 'The Home screen puts the scheduled time, medication details, and two clear actions together: log the dose or request a reminder in 30 minutes. A logged moment confirms the time and includes an undo option for accidental entries.' },
+      { title: 'Encourage honesty without punishment', text: 'The Forest and Pip’s Den belong to one world, and forest growth reflects logged days rather than purchases. A missed dose lets the forest rest; nothing wilts, progress is not erased, and honest reporting earns one acorn.' },
+      { title: 'Keep the health record practical', text: 'The Record tab uses a 30-day calendar, missed-day notes, and a doctor-shareable report. Game elements stay out of this area so medication history remains clear and suitable for a clinical conversation.' },
+    ],
+    flow: [
+      { title: '01 · Remember', text: 'See the next scheduled dose and medication details on Home.' },
+      { title: '02 · Respond', text: 'Log the dose, request a later reminder, or honestly record a missed dose.' },
+      { title: '03 · Confirm', text: 'Review the logged time and undo an accidental entry if needed.' },
+      { title: '04 · Grow', text: 'Visit the Forest, where logged days grow trees around Pip’s home.' },
+      { title: '05 · Review', text: 'Use Record to check the calendar, add missed-day notes, and access the shareable report.' },
+    ],
+    validate: ['Can people across the intended age range quickly distinguish logging a dose from postponing a reminder?', 'Does the resting-forest approach support honest missed-dose reporting without creating guilt?', 'Can users and clinicians understand the medication record independently of the forest and rewards?'],
+  },
 };
 
 const params = new URLSearchParams(window.location.search);
@@ -94,26 +109,26 @@ const nextStudy = studyOrder[(currentIndex + 1) % studyOrder.length];
 const previousStudy = studyOrder[(currentIndex - 1 + studyOrder.length) % studyOrder.length];
 
 const tags = (items) => items.map((item) => `<li>${item}</li>`).join('');
-const decisions = study.decisions.map((decision, index) => `
+const decisions = (study.decisions || []).map((decision, index) => `
   <article class="case-decision">
     <span>${String(index + 1).padStart(2, '0')}</span>
     <h3>${decision.title}</h3>
     <p>${decision.text}</p>
   </article>
 `).join('');
-const flow = study.flow.map((step) => `
+const flow = (study.flow || []).map((step) => `
   <li><span>${step.title}</span><p>${step.text}</p></li>
 `).join('');
-const validation = study.validate.map((item) => `<li>${item}</li>`).join('');
+const validation = (study.validate || []).map((item) => `<li>${item}</li>`).join('');
 
-const experimentVisual = `
-  <div class="case-experiment-visual" aria-label="Abstract survival game interface visual" role="img">
-    <div class="case-experiment-grid"></div>
-    <div class="case-experiment-glow"></div>
-    <div class="case-experiment-top"><span>EXPERIMENT / 07</span><span>SECTOR 04</span></div>
-    <div class="case-experiment-target"><i></i><b></b></div>
-    <div class="case-experiment-readout"><span>CONTAINMENT</span><strong>UNSTABLE</strong></div>
-    <p>read the threat · choose the response</p>
+const heirloomVisual = `
+  <div class="case-heirloom-visual" aria-label="The Heirloom abstract project artwork, in development" role="img">
+    <div class="case-heirloom-grid"></div>
+    <div class="case-heirloom-glow"></div>
+    <div class="case-heirloom-top"><span>THE HEIRLOOM</span><span>ONLINE MULTIPLAYER</span></div>
+    <div class="case-heirloom-target"><i></i><b></b></div>
+    <div class="case-heirloom-readout"><span>PROJECT STATUS</span><strong>In development</strong></div>
+    <p>Deduction game</p>
   </div>
 `;
 
@@ -126,14 +141,14 @@ const dinemaVisual = `
   </div>
 `;
 
-const projectVisual = study.visual === 'experiment'
-  ? experimentVisual
+const projectVisual = study.visual === 'heirloom'
+  ? heirloomVisual
   : study.visual === 'dinema'
   ? dinemaVisual
   : `<figure class="case-image-visual"><img src="${study.image}" alt="${study.imageAlt}" /><figcaption>${study.title} · project interface</figcaption></figure>`;
 
 document.title = `${study.title} Case Study — Celine Emily`;
-document.querySelector('meta[name="description"]')?.setAttribute('content', `${study.title}: UI/UX case study by Celine Emily.`);
+document.querySelector('meta[name="description"]')?.setAttribute('content', study.status ? study.summary : `${study.title}: UI/UX case study by Celine Emily.`);
 
 const root = document.getElementById('case-study');
 if (root) {
@@ -161,10 +176,22 @@ if (root) {
           <div><span>Role</span><strong>${study.role}</strong></div>
           <div><span>Platform</span><strong>${study.platform}</strong></div>
           <div><span>Tools</span><ul class="case-tags">${tags(study.tools)}</ul></div>
-          <div><span>Delivered</span><strong>${study.deliverables}</strong></div>
+          <div><span>${study.status ? 'Status' : 'Delivered'}</span><strong>${study.status || study.deliverables}</strong></div>
         </div>
       </section>
 
+      ${study.status ? `
+      <section class="case-content-section case-context">
+        <div class="case-section-label"><span>01</span> Project progress</div>
+        <div class="case-content-grid">
+          <h2>Currently<br /><em>in development.</em></h2>
+          <div>
+            <p class="case-lead">${study.title} is an ongoing game development project.</p>
+            <p>More gameplay and development details will be shared as the project progresses.</p>
+          </div>
+        </div>
+      </section>
+      ` : `
       <section class="case-content-section case-context">
         <div class="case-section-label"><span>01</span> Project lens</div>
         <div class="case-content-grid">
@@ -196,6 +223,8 @@ if (root) {
         </div>
         <ul>${validation}</ul>
       </section>
+
+      `}
 
       <nav class="case-next" aria-label="More case studies">
         <a href="project.html?project=${previousStudy.slug}" class="case-next-card case-next-previous"><span>Previous case</span><strong>← ${previousStudy.title}</strong></a>

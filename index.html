@@ -126,8 +126,18 @@
         <p class="section-intro">A selection of product, interaction, and visual-design projects shaped through intentional systems and detail-led execution.</p>
       </div>
 
-      <div class="project-grid">
-        <a class="project-card project-card-featured reveal" href="project.html?project=studysynth">
+      <div class="project-controls" id="project-controls" hidden>
+        <div class="project-filters" role="group" aria-label="Filter case studies by category">
+          <button class="project-filter" type="button" data-filter="all" aria-pressed="true" aria-controls="project-grid">All</button>
+          <button class="project-filter" type="button" data-filter="game-design" aria-pressed="false" aria-controls="project-grid">Game Design</button>
+          <button class="project-filter" type="button" data-filter="ui-ux-design" aria-pressed="false" aria-controls="project-grid">UI/UX Design</button>
+          <button class="project-filter" type="button" data-filter="web-design" aria-pressed="false" aria-controls="project-grid">Web Design</button>
+        </div>
+        <p class="project-filter-status" id="project-filter-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      </div>
+
+      <div class="project-grid" id="project-grid">
+        <a class="project-card project-card-featured reveal" href="project.html?project=studysynth" data-categories="ui-ux-design web-design">
           <div class="project-card-content">
             <div class="project-card-topline"><span>01 — Product concept</span><span>Open case study ↗</span></div>
             <p class="project-type">Education technology</p>
@@ -144,25 +154,25 @@
           </div>
         </a>
 
-        <a class="project-card project-card-half reveal" href="project.html?project=last-experiment">
-          <div class="project-visual project-visual-experiment" aria-hidden="true">
-            <div class="experiment-scanline"></div>
-            <div class="experiment-grid"></div>
-            <div class="experiment-hud"><span>EX-07</span><span>01:42</span></div>
-            <div class="experiment-target"></div>
-            <p>contain the unknown</p>
+        <a class="project-card project-card-half reveal" href="project.html?project=heirloom" data-categories="game-design">
+          <div class="project-visual project-visual-heirloom" aria-hidden="true">
+            <div class="heirloom-scanline"></div>
+            <div class="heirloom-grid"></div>
+            <div class="heirloom-hud"><span>THE HEIRLOOM</span><span>IN DEVELOPMENT</span></div>
+            <div class="heirloom-target"></div>
+            <p>online multiplayer deduction</p>
           </div>
           <div class="project-card-content">
-            <div class="project-card-topline"><span>02 — Interaction design</span><span>Open ↗</span></div>
+            <div class="project-card-topline"><span>02 — Ongoing project</span><span>Open ↗</span></div>
             <p class="project-type">Game design</p>
-            <h3>The Last<br />Experiment</h3>
-            <p class="project-summary">A survival FPS concept exploring tension, fast decisions, and interaction under pressure.</p>
-            <ul class="project-tags" aria-label="The Last Experiment tools"><li>Unity</li><li>C#</li></ul>
+            <h3>The Heirloom</h3>
+            <p class="project-summary">An online multiplayer deduction game currently in development using Unreal Engine 5 and Blender.</p>
+            <ul class="project-tags" aria-label="The Heirloom tools"><li>Unreal Engine 5</li><li>Blender</li></ul>
             <span class="project-link">Explore the case study <b>→</b></span>
           </div>
         </a>
 
-        <a class="project-card project-card-half reveal" href="project.html?project=upon-the-star">
+        <a class="project-card project-card-half reveal" href="project.html?project=upon-the-star" data-categories="ui-ux-design web-design">
           <div class="project-visual project-visual-dinema" aria-hidden="true">
             <div class="dinema-glow"></div>
             <div class="dinema-stars"><span>✦</span><span>✧</span><span>✦</span><span>⋆</span><span>✧</span></div>
@@ -176,6 +186,21 @@
             <p class="project-summary">A Disney-themed cinema booking concept — every film is a Disney title, with a Google sign-in, a timed seat hold, and a QR-code ticket built into the flow.</p>
             <ul class="project-tags" aria-label="Upon the Star tools"><li>Figma</li><li>Wireframing</li><li>Visual design</li></ul>
             <span class="project-link">Explore the case study <b>→</b></span>
+          </div>
+        </a>
+
+        <a class="project-card project-card-featured reveal" href="project.html?project=acorn-lab" data-categories="ui-ux-design">
+          <div class="project-card-content">
+            <div class="project-card-topline"><span>04 — Mobile app concept</span><span>Open case study ↗</span></div>
+            <p class="project-type">UI/UX design · Medication reminders</p>
+            <h3>Acorn Lab</h3>
+            <p class="project-summary">A medication reminder app concept that pairs dose logging with a growing forest and Pip the squirrel. I created the full concept, wireframes, and a 14-screen interactive prototype.</p>
+            <ul class="project-tags" aria-label="Acorn Lab tools"><li>Figma</li><li>Wireframing</li><li>Prototyping</li></ul>
+            <span class="project-link">Explore the case study <b>→</b></span>
+          </div>
+          <div class="project-visual project-visual-acorn">
+            <img src="images/acorn-lab.png" width="1398" height="944" alt="Acorn Lab dose reminder, logged-dose confirmation, and forest screens" loading="lazy" decoding="async" />
+            <span class="visual-caption">Small routines, gentle growth</span>
           </div>
         </a>
       </div>
@@ -211,21 +236,21 @@
           </div>
         </article>
         <article class="experience-item reveal">
-          <div class="experience-meta"><span>Jan 2026 — Present</span><span>Indonesia · Remote</span></div>
-          <div class="experience-main">
-            <p class="experience-role">UI/UX Design and Consultant</p>
-            <h3>PT Sumber Berlian Mandiri</h3>
-            <p>Translated business needs into wireframes and polished interfaces, while advising on usability and design consistency across digital touchpoints.</p>
-            <ul class="project-tags"><li>Figma</li><li>Procreate</li><li>Tailwind</li><li>CSS</li><li>HTML</li></ul>
-          </div>
-        </article>
-        <article class="experience-item reveal">
           <div class="experience-meta"><span>Jul 2025 — Jan 2026</span><span>Singapore</span></div>
           <div class="experience-main">
             <p class="experience-role">Media Intern</p>
             <h3>Phillip Securities Pte. Ltd.</h3>
             <p>Created visual content for financial communication, bringing clarity and consistency to videos, digital assets, and marketing campaigns.</p>
             <ul class="project-tags"><li>Figma</li><li>Photoshop</li><li>After Effects</li><li>Premiere Pro</li></ul>
+          </div>
+        </article>
+        <article class="experience-item reveal">
+          <div class="experience-meta"><span>May 2024 - July 2025</span><span>Indonesia · Remote</span></div>
+          <div class="experience-main">
+            <p class="experience-role">UI/UX Designer</p>
+            <h3>PT Sumber Berlian Mandiri</h3>
+            <p>Translated business needs into wireframes and polished interfaces, while advising on usability and design consistency across digital touchpoints.</p>
+            <ul class="project-tags"><li>Figma</li><li>Procreate</li><li>Tailwind</li><li>CSS</li><li>HTML</li></ul>
           </div>
         </article>
       </div>

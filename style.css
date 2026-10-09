@@ -365,7 +365,16 @@ section { scroll-margin-top: 92px; }
 .section h2 em { color: var(--accent-bright); font-style: italic; font-weight: 600; }
 .section-intro { max-width: 365px; margin: 0 0 5px; color: var(--soft); font-family: var(--display); font-size: 1.25rem; font-style: italic; line-height: 1.35; }
 
+.project-controls { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px 24px; margin-top: 48px; }
+.project-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.project-filter { min-height: 44px; padding: 10px 17px; border: 1px solid var(--line-bright); border-radius: 999px; background: transparent; color: var(--soft); font-size: .64rem; letter-spacing: .05em; cursor: pointer; transition: background .2s ease, border-color .2s ease, color .2s ease; }
+.project-filter:hover { border-color: var(--ink); color: var(--ink); }
+.project-filter[aria-pressed='true'] { border-color: var(--ink); background: var(--ink); color: var(--night); }
+.project-filter-status { margin: 0; color: var(--soft); font-size: .58rem; letter-spacing: .04em; }
+.project-controls[hidden], .project-card[hidden] { display: none; }
 .project-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 18px; margin-top: 66px; }
+.project-controls:not([hidden]) + .project-grid { margin-top: 24px; }
+.project-grid.is-filtered .project-card-half { grid-column: span 12; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 420px; }
 .project-card { position: relative; display: grid; overflow: hidden; border: 1px solid var(--line); background: linear-gradient(145deg, rgba(15, 23, 54, .93), rgba(8, 12, 29, .92)); color: var(--ink); text-decoration: none; transition: transform .45s var(--ease), border-color .35s ease, box-shadow .45s ease; }
 .project-card::before { position: absolute; z-index: 0; top: 0; right: 0; left: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-bright), transparent); content: ''; opacity: 0; transition: opacity .35s ease; }
 .project-card:hover, .project-card:focus-visible { z-index: 2; border-color: rgba(212, 224, 255, .58); box-shadow: 0 30px 70px rgba(0, 0, 0, .24), 0 0 60px rgba(85, 116, 220, .11); transform: translateY(-7px); outline: none; }
@@ -390,14 +399,17 @@ section { scroll-margin-top: 92px; }
 .project-card:hover .visual-frame { transform: perspective(1300px) rotateY(-2deg) rotateX(0); }
 .visual-frame img { width: 100%; height: auto; object-fit: cover; }
 .visual-caption { position: absolute; z-index: 2; right: 29px; bottom: 27px; color: var(--soft); font-size: .53rem; letter-spacing: .16em; text-transform: uppercase; }
-.project-visual-experiment { min-height: 280px; margin: 0; background: radial-gradient(circle at 52% 38%, rgba(156, 42, 88, .38), transparent 8%), radial-gradient(circle at 55% 52%, rgba(106, 27, 68, .31), transparent 30%), linear-gradient(145deg, #221129, #0b0d18 68%); }
-.experiment-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(194, 164, 214, .10) 1px, transparent 1px), linear-gradient(90deg, rgba(194, 164, 214, .10) 1px, transparent 1px); background-size: 31px 31px; mask-image: linear-gradient(to bottom, black, transparent); }
-.experiment-scanline { position: absolute; top: 0; bottom: 0; left: 25%; width: 1px; background: rgba(245, 200, 219, .4); box-shadow: 90px 0 0 rgba(245, 200, 219, .09), 180px 0 0 rgba(245, 200, 219, .08); }
-.experiment-hud { position: absolute; top: 20px; right: 21px; left: 21px; display: flex; justify-content: space-between; color: #f1b9cb; font-size: .53rem; letter-spacing: .17em; }
-.experiment-target { position: absolute; top: 50%; left: 50%; width: 100px; height: 100px; border: 1px solid rgba(245, 185, 205, .55); border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 0 17px rgba(245, 185, 205, .06), 0 0 38px rgba(255, 63, 142, .21); }
-.experiment-target::before, .experiment-target::after { position: absolute; top: 50%; left: -20px; width: 138px; height: 1px; background: rgba(245, 185, 205, .45); content: ''; }
-.experiment-target::after { transform: rotate(90deg); }
-.project-visual-experiment p { position: absolute; bottom: 21px; left: 21px; margin: 0; color: #ecc5da; font-family: var(--display); font-size: 1.35rem; font-style: italic; }
+.project-visual-heirloom { min-height: 280px; margin: 0; background: radial-gradient(circle at 52% 38%, rgba(156, 42, 88, .38), transparent 8%), radial-gradient(circle at 55% 52%, rgba(106, 27, 68, .31), transparent 30%), linear-gradient(145deg, #221129, #0b0d18 68%); }
+.heirloom-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(194, 164, 214, .10) 1px, transparent 1px), linear-gradient(90deg, rgba(194, 164, 214, .10) 1px, transparent 1px); background-size: 31px 31px; mask-image: linear-gradient(to bottom, black, transparent); }
+.heirloom-scanline { position: absolute; top: 0; bottom: 0; left: 25%; width: 1px; background: rgba(245, 200, 219, .4); box-shadow: 90px 0 0 rgba(245, 200, 219, .09), 180px 0 0 rgba(245, 200, 219, .08); }
+.heirloom-hud { position: absolute; top: 20px; right: 21px; left: 21px; display: flex; justify-content: space-between; color: #f1b9cb; font-size: .53rem; letter-spacing: .17em; }
+.heirloom-target { position: absolute; top: 50%; left: 50%; width: 100px; height: 100px; border: 1px solid rgba(245, 185, 205, .55); border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 0 17px rgba(245, 185, 205, .06), 0 0 38px rgba(255, 63, 142, .21); }
+.heirloom-target::before, .heirloom-target::after { position: absolute; top: 50%; left: -20px; width: 138px; height: 1px; background: rgba(245, 185, 205, .45); content: ''; }
+.heirloom-target::after { transform: rotate(90deg); }
+.project-visual-acorn { display: flex; align-items: center; justify-content: center; padding: 34px 24px 62px; background: #eee7d8; }
+.project-visual-acorn img { width: 100%; height: auto; object-fit: contain; border: 1px solid rgba(61, 43, 28, .12); border-radius: 8px; }
+.project-visual-acorn .visual-caption { right: 24px; bottom: 23px; left: 24px; color: #59432e; text-align: center; }
+.project-visual-heirloom p { position: absolute; bottom: 21px; left: 21px; margin: 0; color: #ecc5da; font-family: var(--display); font-size: 1.35rem; font-style: italic; }
 .project-visual-dinema { position: relative; min-height: 280px; overflow: hidden; background: radial-gradient(circle at 50% 32%, rgba(255, 214, 140, .16), transparent 55%), linear-gradient(160deg, #1c1332 0%, #0b0d1f 72%); }
 .dinema-glow { position: absolute; top: 16%; left: 50%; width: 130px; height: 130px; background: radial-gradient(circle, rgba(255, 224, 168, .55), transparent 70%); filter: blur(2px); transform: translateX(-50%); transition: transform .7s var(--ease), opacity .7s var(--ease); }
 .project-card:hover .dinema-glow { transform: translateX(-50%) scale(1.18); opacity: .85; }
@@ -585,6 +597,9 @@ section { scroll-margin-top: 92px; }
   .section-kicker, .eyebrow { font-size: .53rem; }
   .section-intro { font-size: 1.12rem; }
   .project-grid { gap: 14px; margin-top: 42px; }
+  .project-controls { margin-top: 32px; }
+  .project-filter { padding-right: 14px; padding-left: 14px; font-size: .61rem; }
+  .project-grid.is-filtered .project-card-half { min-height: auto; }
   .project-card-featured, .project-card-half { display: flex; flex-direction: column; grid-column: span 12; min-height: auto; }
   .project-card-featured .project-visual, .project-card-half .project-visual { order: 0; min-height: 230px; }
   .project-card-content, .project-card-half .project-card-content { min-height: 388px; padding: 25px 24px 24px; }
@@ -597,8 +612,8 @@ section { scroll-margin-top: 92px; }
   .project-summary { font-size: .66rem; }
   .visual-frame { transform: none; }
   .visual-caption { right: 15px; bottom: 13px; font-size: .45rem; }
-  .project-visual-experiment { min-height: 230px; }
-  .project-visual-experiment p { left: 17px; bottom: 16px; font-size: 1.15rem; }
+  .project-visual-heirloom { min-height: 230px; }
+  .project-visual-heirloom p { left: 17px; bottom: 16px; font-size: 1.15rem; }
   .project-visual-dinema, .dinema-mark { min-height: 230px; }
   .dinema-mark { padding: 0 20px; font-size: 1.6rem; }
   .principles-grid { grid-template-columns: 1fr; }

@@ -42,19 +42,23 @@ body.case-page {
 .case-image-visual img { width: 100%; min-height: 430px; max-height: 730px; object-fit: cover; object-position: top center; }
 .case-image-visual::after { position: absolute; inset: 0; background: linear-gradient(120deg, rgba(3, 5, 15, .07), transparent 35%, rgba(169, 190, 255, .07)); content: ''; pointer-events: none; }
 .case-image-visual figcaption { position: absolute; z-index: 1; right: 22px; bottom: 19px; color: var(--ice); font-size: .54rem; letter-spacing: .16em; text-transform: uppercase; }
+.case-study-acorn-lab .case-image-visual { background: #e5e5e5; }
+.case-study-acorn-lab .case-image-visual img { min-height: 0; max-height: none; height: auto; object-fit: contain; }
+.case-study-acorn-lab .case-image-visual::after { display: none; }
+.case-study-acorn-lab .case-image-visual figcaption { position: static; padding: 18px 22px; background: #f5efe3; color: #59432e; text-align: center; }
 
-.case-experiment-visual { position: relative; min-height: 590px; overflow: hidden; border: 1px solid rgba(226, 182, 204, .36); background: radial-gradient(circle at 51% 44%, rgba(151, 38, 85, .41), transparent 11%), radial-gradient(circle at 50% 48%, rgba(83, 25, 68, .32), transparent 35%), linear-gradient(145deg, #23102a, #090b17 72%); box-shadow: 0 35px 90px rgba(0, 0, 0, .34), 0 0 80px rgba(181, 59, 120, .14); }
-.case-experiment-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(242, 184, 209, .09) 1px, transparent 1px), linear-gradient(90deg, rgba(242, 184, 209, .09) 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(to bottom, black, transparent 88%); }
-.case-experiment-glow { position: absolute; top: -38%; left: 50%; width: 34%; height: 155%; border-right: 1px solid rgba(246, 191, 216, .35); border-left: 1px solid rgba(246, 191, 216, .12); background: linear-gradient(90deg, transparent, rgba(246, 191, 216, .05), transparent); transform: translateX(-50%) rotate(18deg); }
-.case-experiment-top { position: absolute; top: 29px; right: 31px; left: 31px; display: flex; justify-content: space-between; color: #f4b7d1; font-size: .58rem; letter-spacing: .18em; }
-.case-experiment-target { position: absolute; top: 48%; left: 50%; width: 200px; height: 200px; border: 1px solid rgba(250, 196, 217, .6); border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 0 30px rgba(250, 196, 217, .045), 0 0 70px rgba(255, 64, 140, .27); }
-.case-experiment-target::before, .case-experiment-target::after { position: absolute; top: 50%; left: -46px; width: 290px; height: 1px; background: rgba(250, 196, 217, .48); content: ''; }
-.case-experiment-target::after { transform: rotate(90deg); }
-.case-experiment-target i, .case-experiment-target b { position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; border-radius: 50%; background: #ffd5e5; box-shadow: 0 0 22px #ffa8ca; transform: translate(-50%, -50%); }
-.case-experiment-target b { width: 100px; height: 100px; border: 1px dashed rgba(255, 208, 226, .75); background: transparent; box-shadow: none; }
-.case-experiment-readout { position: absolute; right: 31px; bottom: 29px; display: grid; gap: 8px; color: #eec5d7; font-size: .56rem; letter-spacing: .16em; text-align: right; }
-.case-experiment-readout strong { color: #ffaccd; font-family: var(--display); font-size: 1.25rem; font-style: italic; letter-spacing: .04em; }
-.case-experiment-visual > p { position: absolute; bottom: 25px; left: 30px; margin: 0; color: #f0c6d8; font-family: var(--display); font-size: 1.55rem; font-style: italic; }
+.case-heirloom-visual { position: relative; min-height: 590px; overflow: hidden; border: 1px solid rgba(226, 182, 204, .36); background: radial-gradient(circle at 51% 44%, rgba(151, 38, 85, .41), transparent 11%), radial-gradient(circle at 50% 48%, rgba(83, 25, 68, .32), transparent 35%), linear-gradient(145deg, #23102a, #090b17 72%); box-shadow: 0 35px 90px rgba(0, 0, 0, .34), 0 0 80px rgba(181, 59, 120, .14); }
+.case-heirloom-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(242, 184, 209, .09) 1px, transparent 1px), linear-gradient(90deg, rgba(242, 184, 209, .09) 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(to bottom, black, transparent 88%); }
+.case-heirloom-glow { position: absolute; top: -38%; left: 50%; width: 34%; height: 155%; border-right: 1px solid rgba(246, 191, 216, .35); border-left: 1px solid rgba(246, 191, 216, .12); background: linear-gradient(90deg, transparent, rgba(246, 191, 216, .05), transparent); transform: translateX(-50%) rotate(18deg); }
+.case-heirloom-top { position: absolute; top: 29px; right: 31px; left: 31px; display: flex; justify-content: space-between; color: #f4b7d1; font-size: .58rem; letter-spacing: .18em; }
+.case-heirloom-target { position: absolute; top: 48%; left: 50%; width: 200px; height: 200px; border: 1px solid rgba(250, 196, 217, .6); border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 0 30px rgba(250, 196, 217, .045), 0 0 70px rgba(255, 64, 140, .27); }
+.case-heirloom-target::before, .case-heirloom-target::after { position: absolute; top: 50%; left: -46px; width: 290px; height: 1px; background: rgba(250, 196, 217, .48); content: ''; }
+.case-heirloom-target::after { transform: rotate(90deg); }
+.case-heirloom-target i, .case-heirloom-target b { position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; border-radius: 50%; background: #ffd5e5; box-shadow: 0 0 22px #ffa8ca; transform: translate(-50%, -50%); }
+.case-heirloom-target b { width: 100px; height: 100px; border: 1px dashed rgba(255, 208, 226, .75); background: transparent; box-shadow: none; }
+.case-heirloom-readout { position: absolute; right: 31px; bottom: 29px; display: grid; gap: 8px; color: #eec5d7; font-size: .56rem; letter-spacing: .16em; text-align: right; }
+.case-heirloom-readout strong { color: #ffaccd; font-family: var(--display); font-size: 1.25rem; font-style: italic; letter-spacing: .04em; }
+.case-heirloom-visual > p { position: absolute; bottom: 25px; left: 30px; margin: 0; color: #f0c6d8; font-family: var(--display); font-size: 1.55rem; font-style: italic; }
 
 .case-dinema-visual { position: relative; display: grid; place-items: center; min-height: 590px; overflow: hidden; border: 1px solid rgba(255, 214, 140, .3); background: radial-gradient(circle at 50% 34%, rgba(255, 214, 140, .16), transparent 55%), linear-gradient(160deg, #1c1332 0%, #0b0d1f 74%); box-shadow: 0 35px 90px rgba(0, 0, 0, .34), 0 0 80px rgba(255, 214, 140, .12); }
 .case-dinema-stars { position: absolute; inset: 0; }
@@ -141,14 +145,14 @@ body.case-page {
   .case-visual-wrap { margin-top: 50px; }
   .case-image-visual img { min-height: 255px; max-height: 470px; }
   .case-image-visual figcaption { right: 12px; bottom: 11px; font-size: .44rem; }
-  .case-experiment-visual { min-height: 330px; }
-  .case-experiment-top { top: 17px; right: 17px; left: 17px; font-size: .45rem; }
-  .case-experiment-target { width: 120px; height: 120px; }
-  .case-experiment-target::before, .case-experiment-target::after { left: -30px; width: 178px; }
-  .case-experiment-target b { width: 58px; height: 58px; }
-  .case-experiment-readout { right: 17px; bottom: 16px; font-size: .44rem; }
-  .case-experiment-readout strong { font-size: 1rem; }
-  .case-experiment-visual > p { bottom: 15px; left: 17px; font-size: 1.12rem; }
+  .case-heirloom-visual { min-height: 330px; }
+  .case-heirloom-top { top: 17px; right: 17px; left: 17px; font-size: .45rem; }
+  .case-heirloom-target { width: 120px; height: 120px; }
+  .case-heirloom-target::before, .case-heirloom-target::after { left: -30px; width: 178px; }
+  .case-heirloom-target b { width: 58px; height: 58px; }
+  .case-heirloom-readout { right: 17px; bottom: 16px; font-size: .44rem; }
+  .case-heirloom-readout strong { font-size: 1rem; }
+  .case-heirloom-visual > p { bottom: 15px; left: 17px; font-size: 1.12rem; }
   .case-dinema-visual { min-height: 330px; }
   .case-dinema-mark { font-size: 2rem; }
   .case-dinema-visual > p { bottom: 15px; left: 17px; font-size: 1rem; }
