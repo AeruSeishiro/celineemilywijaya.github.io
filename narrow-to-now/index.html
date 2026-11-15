@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Narrow to Now · Case Study · Celine Emily Wijaya</title>
+  <meta name="description" content="A Goodreads redesign case study: helping readers pick one book from a long Want to Read list. DV2008 individual case study by Celine Emily Wijaya." />
+  <meta property="og:title" content="Narrow to Now · Celine Emily Wijaya" />
+  <meta property="og:description" content="Turning a 40-book Want to Read list into three picks for tonight." />
+  <meta property="og:image" content="assets/img/hero-picks.webp" />
+  <meta name="theme-color" content="#050711" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M21 4a12 12 0 1 0 7 21A10 10 0 1 1 21 4z' fill='%23c3d1ff'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#overview">Skip to content</a>
+
+  <!-- sky + cursor -->
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="cursor" aria-hidden="true">
+    <svg class="cursor__moon" viewBox="0 0 24 24"><path d="M15.5 2.5a9.5 9.5 0 1 0 6 16.9A8 8 0 1 1 15.5 2.5z"/></svg>
+  </div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <!-- nav -->
+  <header class="nav">
+    <a class="nav__brand" href="https://celineemily.com" aria-label="Celine Emily Wijaya, back to portfolio">
+      <svg class="nav__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 2.5a9.5 9.5 0 1 0 6 16.9A8 8 0 1 1 15.5 2.5z"/></svg>
+      Celine Emily Wijaya <span class="spark">✦</span>
+    </a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#overview">Overview</a>
+      <a href="#role">Role</a>
+      <a href="#process">Process</a>
+      <a href="#craft">Craft</a>
+      <a href="#testing">Testing</a>
+      <a href="#reflection">Reflection</a>
+      <a href="#thanks">Thanks</a>
+    </nav>
+    <a class="btn btn--ghost nav__back" href="https://celineemily.com/#project">All case studies ↗</a>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero__bar reveal">
+        <a class="hero__brand" href="https://celineemily.com">Celine Emily Wijaya <span class="spark">✦</span></a>
+        <span class="hero__label">Case study 02 &nbsp;·&nbsp; UI/UX design</span>
+      </div>
+      <div class="hero__copy">
+        <p class="eyebrow reveal">DV2008 · Individual case study · Goodreads redesign</p>
+        <h1 class="hero__title reveal">Narrow to <em>Now</em></h1>
+        <p class="hero__lede reveal">Most of us have a Want to Read list we never actually read from. This is how our team turned a 40-book Goodreads list into three picks for tonight, told through the screens I designed and tested.</p>
+      </div>
+      <div class="hero__sky" aria-hidden="true">
+        <div class="planet">
+          <div class="planet__glow"></div>
+          <div class="planet__orbit"></div>
+          <div class="planet__ball"><i class="crater c1"></i></div>
+          <div class="planet__orbit planet__orbit--front"></div>
+        </div>
+      </div>
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Research, ideation, testing, and the picks + results screens</dd></div>
+        <div><dt>Team</dt><dd>Group 5 Beng-Beng: Janice, Michelle, Michael and me</dd></div>
+        <div><dt>Timeline</dt><dd>Sep to Nov 2026</dd></div>
+        <div><dt>Tools</dt><dd>Figma (UI, prototyping, variables), FigJam</dd></div>
+      </dl>
+    </section>
+
+    <figure class="showcase reveal">
+      <div class="showcase__frame tilt" data-zoom="assets/img/hero-picks.webp">
+        <img src="assets/img/hero-picks.webp" alt="Narrow to Now results screen: three picks from the reader's Want to Read list, Legends & Lattes, Before the Coffee Gets Cold and Days at the Morisaki Bookshop, each with an Is it for me panel." width="1200" height="800" />
+      </div>
+      <figcaption><span class="tag tag--mine">My screen · 08</span> Final A3 prototype. Three picks pulled from your own Want to Read list, with an “Is it for me?” panel on each.</figcaption>
+    </figure>
+
+    <!-- 01 OVERVIEW -->
+    <section class="section" id="overview">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span class="num">01</span> Overview</p>
+        <h2>Saving a book is easy. <em>Picking one isn’t.</em></h2>
+      </header>
+      <div class="grid grid--3">
+        <article class="card reveal">
+          <p class="card__k">01</p>
+          <h3>Context</h3>
+          <p>Goodreads is where readers keep track of what they want to read, but it’s rarely where they find it. In our A1 survey of 41 university readers, 28 found books through friends and family and 28 through TikTok or Instagram. Six found them on Goodreads.</p>
+        </article>
+        <article class="card reveal">
+          <p class="card__k">02</p>
+          <h3>Problem</h3>
+          <p>Books get saved in five different places and the lists keep growing. P3 said it during testing: she remembered saving the books, “but not the reason”. So the hard part comes right at the end, when you have to choose one.</p>
+        </article>
+        <article class="card reveal">
+          <p class="card__k">03</p>
+          <h3>Objectives</h3>
+          <ul class="list">
+            <li>Get someone from a 40-book list to one book they actually start.</li>
+            <li>Keep the reason a book was saved, so it still makes sense months later.</li>
+            <li>Leave the final call with the reader. We suggest, they pick.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="split split--wide">
+        <div class="card chart reveal" data-bars>
+          <p class="eyebrow">A1 survey · where 41 readers find books</p>
+          <div class="bar-row"><span>Friends &amp; family</span><div class="track"><i style="--v:28/41"></i></div><b>28 of 41</b></div>
+          <div class="bar-row"><span>TikTok / Instagram</span><div class="track"><i style="--v:28/41"></i></div><b>28 of 41</b></div>
+          <div class="bar-row bar-row--hi"><span>Goodreads</span><div class="track"><i style="--v:6/41"></i></div><b>6 of 41</b></div>
+          <p class="note">Goodreads is where the list lives, not where the books are found. That gap is where this project started.</p>
+        </div>
+        <blockquote class="card quote quote--big reveal">
+          <span class="quote__mark" aria-hidden="true">“</span>
+          <p>I don’t need more recommendations; I need help choosing from what I already saved.</p>
+          <cite>P1, A3 usability test</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 02 ROLE -->
+    <section class="section" id="role">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span class="num">02</span> My contribution</p>
+        <h2>What I did, and <em>what we did together</em></h2>
+      </header>
+      <div class="grid grid--2">
+        <article class="card card--hi reveal">
+          <p class="card__k">Me</p>
+          <h3>What I owned</h3>
+          <ol class="timeline">
+            <li><b>A1</b><span>I walked through Goodreads’ discover → search → evaluate → decide → save journey, wrote our interview guide, ran interviews, and wrote Finding 3: saving books doesn’t help anyone choose.</span></li>
+            <li><b>A2</b><span>I sketched ideas A, B and C, ran concept tests and pulled the A vs E notes together. In the prototype I designed the questions and the picks screen, and I presented slides 1 to 5.</span></li>
+            <li><b>A3</b><span>I designed the recommendation cards and results (screens 08, 08b, 08c, 11 and E2): Shuffle, Change answers, no shuffles left, no matches, only two matches. I facilitated P1, took notes for P2, and turned all five sessions into numbers against our A2 metrics.</span></li>
+          </ol>
+        </article>
+        <article class="card reveal">
+          <p class="card__k">Team</p>
+          <h3>Team effort</h3>
+          <ol class="timeline timeline--team">
+            <li><b>A1</b><span>Janice built the survey and wrote Finding 1. Michelle planned the research and wrote Finding 2. Michael set up the affinity map and the problem statement. We sorted every note together.</span></li>
+            <li><b>A2</b><span>Twelve ideas, three each. Janice wrote the HMWs and decision matrix, Michelle ran scoring and the impact/effort chart, Michael did the competitor scan and user flow. Choosing Narrow to Now was a group call.</span></li>
+            <li><b>A3</b><span>One feature area each: Michelle the saving flow, Michael the list and questions, Janice the book pages and actions. P5, synthesis and the fixes happened in group meetings.</span></li>
+          </ol>
+        </article>
+      </div>
+      <aside class="callout reveal">
+        <p class="eyebrow">One problem I owned</p>
+        <p class="callout__text">In concept testing, one reader couldn’t name a mood and another just wanted to skip that question. So on my questions and picks screen, every question got an “Any” option and the picks got a “Change answers” link. Nobody should be stuck with the first three books.</p>
+      </aside>
+    </section>
+
+    <!-- 03 PROCESS -->
+    <section class="section" id="process">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span class="num">03</span> Process</p>
+        <h2>From a research finding to <em>one direction</em></h2>
+      </header>
+      <div class="card journey reveal">
+        <p class="eyebrow">My A1 walkthrough · the Goodreads journey today</p>
+        <ol class="journey__steps">
+          <li><span class="card__k">01</span><b>Discover</b><span>TikTok, friends, Instagram. Mostly off Goodreads.</span></li>
+          <li><span class="card__k">02</span><b>Search</b><span>Look the title up to see what it actually is.</span></li>
+          <li><span class="card__k">03</span><b>Evaluate</b><span>Star average, blurb, a few reviews.</span></li>
+          <li class="is-pain"><span class="card__k">04</span><b>Decide</b><span>No way to compare books side by side, or to remember why one was saved.</span><em>Finding 3: people get stuck here</em></li>
+          <li><span class="card__k">05</span><b>Save</b><span>Tap Want to Read. The list quietly passes 40 books.</span></li>
+        </ol>
+        <p class="note">Goodreads handles saving well. Deciding is the step it leaves to you, and that’s the step we designed for.</p>
+      </div>
+      <div class="grid grid--4">
+        <article class="card card--sm reveal"><p class="card__k">01</p><h3>Research insight</h3><p>People find books elsewhere and save them everywhere. My Finding 3 came out of the journey walkthrough: Goodreads helps you save, then leaves you on your own at “decide”.</p></article>
+        <article class="card card--sm reveal"><p class="card__k">02</p><h3>Ideation, A to L</h3><p>Twelve ideas, three each. Mine were A (a mood-based shortlist), B (save from anywhere) and C (remember why I saved this).</p></article>
+        <article class="card card--sm reveal"><p class="card__k">03</p><h3>Concept testing</h3><p>Idea A against idea E (“This or That”) with 5 readers. 3 picked A, 1 picked E, and 1 said it depends on the day.</p>
+          <div class="dots" aria-label="3 of 5 chose A, 1 chose E, 1 undecided"><i class="a"></i><i class="a"></i><i class="a"></i><i class="e"></i><i class="u"></i></div></article>
+        <article class="card card--sm reveal"><p class="card__k">04</p><h3>Chosen direction</h3><p>Narrow to Now. Save a book with a reason (C), narrow to three picks (A), then check each one with an “Is it for me?” card (K).</p></article>
+      </div>
+      <figure class="figure reveal">
+        <div class="figure__frame" data-zoom="assets/img/sketches.webp"><img src="assets/img/sketches.webp" alt="Hand-drawn sketches of ideas A to D from the A2 FigJam board, with handwritten notes." width="1200" height="429" loading="lazy" /></div>
+        <figcaption>Sketches from our A2 FigJam board. A, B and C are mine, messy handwriting and all.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 04 DECISIONS -->
+    <section class="section" id="decisions">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span class="num">04</span> Design decisions</p>
+        <h2>Three calls that <em>shaped the solution</em></h2>
+      </header>
+      <div class="grid grid--3">
+        <article class="card decision reveal">
+          <p class="card__k">Decision 01</p><h3>Go with A, not E</h3>
+          <dl><dt>Decision</dt><dd>Build the “What should I read now?” flow.</dd><dt>Why</dt><dd>It gets to a shortlist in fewer steps, and suits someone who wants to start reading soon.</dd><dt>Evidence</dt><dd>3 of 5 testers chose A. One said E is for browsing and A is for “picking for this week”.</dd></dl>
+        </article>
+        <article class="card decision reveal">
+          <p class="card__k">Decision 02</p><h3>Add “Any” and “Change answers”</h3>
+          <dl><dt>Decision</dt><dd>Every question gets an “Any” option, and picks can be redone.</dd><dt>Why</dt><dd>Some readers can’t name a mood. Others only care about length.</dd><dt>Evidence</dt><dd>One tester couldn’t answer the mood question. Another wanted to skip it.</dd></dl>
+        </article>
+        <article class="card decision reveal">
+          <p class="card__k">Decision 03</p><h3>Merge C, A and K into one flow</h3>
+          <dl><dt>Decision</dt><dd>Saving with a reason, a three-book shortlist and a judging card become one flow.</dd><dt>Why</dt><dd>Without the saved reason, three picks are just three random titles. K makes them easier to weigh.</dd><dt>Evidence</dt><dd>A scored highest. K got full marks too, but only made sense as the step after A.</dd></dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- 05 REFINING -->
+    <section class="section" id="refining">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span class="num">05</span> Refining in A3</p>
+        <h2>What changed after <em>the A2 feedback</em></h2>
+        <p class="section__intro">Our lecturer liked the link to research, then asked three hard questions. Would people really add a reason? What happens if they don’t? Do the three features feel like one product? We kept the direction and split the prototype into four feature areas. Mine was the picks and results, so Change 02 was on me.</p>
+      </header>
+      <div class="grid grid--3">
+        <article class="card change reveal">
+          <div class="change__img" data-zoom="assets/img/save-reason.webp"><img src="assets/img/save-reason.webp" alt="Save flow: the book is saved first, then an optional reason popup with chips like Friend rec and Saw on BookTok." width="1200" height="800" loading="lazy" /></div>
+          <p class="card__k">Change 01 · Michelle</p><h3>Save first, reason after</h3>
+          <p><b>Before.</b> Want to Read asked why before it saved anything. It felt like homework.</p>
+          <p><b>After.</b> One tap saves the book. The reason is optional, and Skip is as easy as Add.</p>
+        </article>
+        <article class="card card--hi change reveal">
+          <div class="change__img" data-zoom="assets/img/want-to-read.webp"><img src="assets/img/want-to-read.webp" alt="Want to Read list with a Saved because column; one book shows No reason yet with an Add a reason link." width="1200" height="800" loading="lazy" /></div>
+          <p class="card__k">Change 02 · my screens</p><h3>Picks work with no reasons</h3>
+          <p><b>Before.</b> My picks leaned on saved reasons, so a book with no reason made a weak pick.</p>
+          <p><b>After.</b> Picks match on mood, pace and length tags. With no reason, the card says “No reason yet” and shows a small Add link instead of making one up.</p>
+        </article>
+        <article class="card change reveal">
+          <div class="change__img" data-zoom="assets/img/currently-reading.webp"><img src="assets/img/currently-reading.webp" alt="Currently Reading shelf showing Legends & Lattes started today, with an Undo toast." width="1200" height="800" loading="lazy" /></div>
+          <p class="card__k">Change 03 · Janice, Michael</p><h3>One flow with a real ending</h3>
+          <p><b>Before.</b> Saving, picking and judging felt like three features, and a pick simply stopped.</p>
+          <p><b>After.</b> One “Saved because” label follows the book everywhere, and every pick ends in Start reading, Not now or Remove.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--tight" id="a3-screens" aria-label="My A3 screens">
+      <header class="section__head reveal">
+        <p class="eyebrow eyebrow--sub">Assignment 3 · the screens I built</p>
+        <h3 class="subhead">Every way a set of picks can go</h3>
+        <p class="section__intro">The happy path is three good books. The rest of my time went on what happens when it isn’t. These are my hi-fi wireframes from the A3 prototype, straight out of our Figma file.</p>
+      </header>
+      <div class="a3-grid">
+        <figure class="figure figure--lead reveal">
+          <div class="figure__frame figure__frame--mine" data-zoom="assets/img/hero-picks.webp"><img src="assets/img/hero-picks.webp" alt="Screen 08: Your 3 picks for this weekend, with Change answers and Shuffle picks." width="1200" height="800" loading="lazy" /></div>
+          <figcaption><span class="tag tag--mine">08 · Your 3 picks</span> The main screen. Answers sit at the top as chips, Change answers is always one tap away, and Shuffle lives at the bottom so it reads as “more like this”.</figcaption>
+        </figure>
+        <figure class="figure reveal">
+          <div class="figure__frame figure__frame--mine" data-zoom="assets/img/shuffled-picks.webp"><img src="assets/img/shuffled-picks.webp" alt="Screen 08b: shuffled picks with three different books and 1 shuffle left." width="1440" height="960" loading="lazy" /></div>
+          <figcaption><span class="tag tag--mine">08b · Shuffled</span> Same answers, three new books. The counter says “1 shuffle left” so nobody shuffles forever.</figcaption>
+        </figure>
+        <figure class="figure reveal">
+          <div class="figure__frame figure__frame--mine" data-zoom="assets/img/no-shuffles-left.webp"><img src="assets/img/no-shuffles-left.webp" alt="Screen 08c: a banner says you have seen all 9 books that match, with Change answers and Back to Want to Read." width="1440" height="960" loading="lazy" /></div>
+          <figcaption><span class="tag tag--mine">08c · No shuffles left</span> After nine matches, the banner says so plainly and offers two ways out instead of repeating the same books.</figcaption>
+        </figure>
+        <figure class="figure reveal">
+          <div class="figure__frame figure__frame--mine" data-zoom="assets/img/only-two-matches.webp"><img src="assets/img/only-two-matches.webp" alt="Edge state E2: Your 2 picks for this weekend, with a note that only 2 books fit and a suggestion to set length to Any." width="1440" height="960" loading="lazy" /></div>
+          <figcaption><span class="tag tag--mine">E2 · Only 2 matches</span> Two honest picks beat a padded third. The note tells you which answer to loosen if you want more.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 06 CRAFT -->
+    <section class="section" id="craft">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span class="num">06</span> Prototype craft</p>
+        <h2>How I built the <em>picks and results</em></h2>
+      </header>
+      <ol class="flow reveal" aria-label="The full Narrow to Now flow">
+        <li>Save a book + reason</li><li>Want to Read shelf</li><li>Help me choose</li><li class="is-mine">Three picks</li><li>“Is it for me?” card</li>
+      </ol>
+      <div class="card map reveal">
+        <div class="map__head"><p class="eyebrow">My screens · how the results branch</p><p class="map__legend"><i></i> Bright outline = designed by me</p></div>
+        <div class="map__body">
+          <div class="node"><span class="card__k">06–07 · Michael</span><b>Answers</b><span>Mood · time · length, each with “Any”</span></div>
+          <span class="map__arrow" aria-hidden="true">→</span>
+          <div class="node node--mine"><span class="card__k">08 · Me</span><b>Three picks</b><span>Cards with tags, saved reason and “Is it for me?”, plus a Change answers link</span></div>
+          <span class="map__arrow" aria-hidden="true">→</span>
+          <ul class="map__out">
+            <li class="node node--mine node--row"><span class="card__k">08b</span><b>Shuffle</b><span>Three more books, same answers</span></li>
+            <li class="node node--mine node--row"><span class="card__k">08c</span><b>No shuffles left</b><span>You’ve seen every match. Change answers or go back to the full list</span></li>
+            <li class="node node--mine node--row"><span class="card__k">11</span><b>No matches</b><span>Closest books, plus one tap to loosen an answer</span></li>
+            <li class="node node--mine node--row"><span class="card__k">E2</span><b>Only 2 matches</b><span>Shows two and says why, never pads with a bad third</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="gallery">
+        <figure class="figure reveal">
+          <div class="figure__frame" data-zoom="assets/img/questions.webp"><img src="assets/img/questions.webp" alt="Help me choose modal asking What do you feel like, with mood chips Cosy, Funny, Emotional, Intense, Dark and Any." width="1200" height="800" loading="lazy" /></div>
+          <figcaption><span class="tag">Michael</span> One question at a time, and my picks page reads whatever you answer here.</figcaption>
+        </figure>
+        <figure class="figure reveal">
+          <div class="figure__frame" data-zoom="assets/img/book-page.webp"><img src="assets/img/book-page.webp" alt="Book page for Legends & Lattes opened from a pick, with Start reading, Not now and Remove from list." width="1200" height="800" loading="lazy" /></div>
+          <figcaption><span class="tag">Janice</span> The book page a pick opens into. Start reading is the only filled button.</figcaption>
+        </figure>
+        <figure class="figure reveal">
+          <div class="figure__frame figure__frame--mine" data-zoom="assets/img/no-match.webp"><img src="assets/img/no-match.webp" alt="No match state: No books on your list match all three answers, with buttons to set length or mood to Any." width="1200" height="800" loading="lazy" /></div>
+          <figcaption><span class="tag tag--mine">Mine · 11</span> Instead of an empty page you get the closest books and a one-tap way to loosen an answer.</figcaption>
+        </figure>
+        <figure class="figure reveal">
+          <div class="figure__frame" data-zoom="assets/img/save-skip.webp"><img src="assets/img/save-skip.webp" alt="Book saved with no reason; a toast says Saved to Want to Read with an Add a reason link." width="1200" height="800" loading="lazy" /></div>
+          <figcaption><span class="tag">Michelle</span> Skipping the reason still saves the book, which is exactly why my picks couldn’t depend on reasons.</figcaption>
+        </figure>
+      </div>
+      <div class="grid grid--3">
+        <article class="card reveal"><p class="card__k">Craft 01</p><h3>Answers that carry through</h3><p>Mood, time and length live in Figma variables. Choose “Cosy” and my results title and “Based on” chips say cosy too.</p><p>I also wired the branches. “Long (450+)” lands on my no-match state and “Dark” gives only two picks, so testers could actually hit the edge cases.</p></article>
+        <article class="card reveal"><p class="card__k">Craft 02</p><h3>Fitting into the team’s kit</h3><p>We all worked from Goodreads’ own type (Merriweather and Lato), its cream and brown, and one set of components. My cards reuse the cover, label and button, so they sit next to my teammates’ screens without looking stitched on.</p><p>We also kept a copy of today’s Want to Read page so we could test old against new.</p></article>
+        <article class="card reveal"><p class="card__k">Craft 03</p><h3>Accessible by default</h3><p>Goodreads’ green button is 3.4:1 on white, under the 4.5:1 minimum. As a team we moved main buttons to their darker green (5.2:1).</p><p>Shuffle and Change answers on my cards are 44 px tall, and nothing relies on colour alone.</p></article>
+      </div>
+    </section>
+
+    <!-- 07 TESTING -->
+    <section class="section" id="testing">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span class="num">07</span> Testing</p>
+        <h2>What we tested, and <em>what happened</em></h2>
+      </header>
+      <div class="split">
+        <div class="reveal">
+          <p class="lead">Narrow to Now takes a 40+ book list down to three that fit tonight. The reader still makes the final pick. Saving, choosing and judging run as one loop that ends with a book on Currently Reading.</p>
+          <p>We tested with five readers aged 20 to 23, from two who had never opened Goodreads to one who reads 35 books a year. Each picked a cosy, short book twice: first on Goodreads today, then on Narrow to Now. I facilitated P1, took notes for P2, and turned all five sessions into numbers.</p>
+          <p class="eyebrow eyebrow--sub">What we saw</p>
+          <ul class="list">
+            <li>3 of 5 added a reason when saving. The 2 who skipped went back to check the book had saved at all.</li>
+            <li>2 of 5 thought Shuffle and Change answers did the same thing. Both buttons live on my results screen.</li>
+            <li>4 of 5 read the mood tags and the “Is it for me?” trade-offs before choosing. P4 didn’t, because they already knew the book.</li>
+          </ul>
+          <p class="note">Five people is a small group, so I report counts, not percentages.</p>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow">Results · Goodreads today → Narrow to Now (average of 5)</p>
+          <div class="card scores" data-bars>
+            <h4>Confidence in the pick <span>(1–5)</span></h4>
+            <div class="bar-row bar-row--old"><span>Goodreads today</span><div class="track"><i style="--v:2.8/5"></i></div><b>2.8</b></div>
+            <div class="bar-row bar-row--hi"><span>Narrow to Now</span><div class="track"><i style="--v:4/5"></i></div><b>4.0</b></div>
+            <h4>Ease of the task <span>(1–7)</span></h4>
+            <div class="bar-row bar-row--old"><span>Goodreads today</span><div class="track"><i style="--v:3.8/7"></i></div><b>3.8</b></div>
+            <div class="bar-row bar-row--hi"><span>Narrow to Now</span><div class="track"><i style="--v:5.8/7"></i></div><b>5.8</b></div>
+            <p class="note">Same task, same five people. Everyone found a book both times. The difference was how sure they felt and how much back-and-forth it took.</p>
+          </div>
+          <ul class="stats">
+            <li><span>Added a reason when saving</span><b>3/5</b></li>
+            <li><span>Read the “Is it for me?” panel first</span><b>4/5</b></li>
+            <li><span>Mixed up Shuffle and Change answers</span><b>2/5</b></li>
+          </ul>
+        </div>
+      </div>
+      <p class="eyebrow eyebrow--sub reveal">In their words</p>
+      <div class="grid grid--3">
+        <blockquote class="card quote reveal"><span class="quote__mark" aria-hidden="true">“</span><p>Wait, did Skip mean I skipped adding the whole book?</p><cite>P2, on the save flow</cite></blockquote>
+        <blockquote class="card quote reveal"><span class="quote__mark" aria-hidden="true">“</span><p>I assumed both would change the selection.</p><cite>P4, on my Shuffle and Change answers buttons</cite></blockquote>
+        <blockquote class="card quote reveal"><span class="quote__mark" aria-hidden="true">“</span><p>If every book only sounds positive, I’d trust the summary less.</p><cite>P3, on the “Is it for me?” panel</cite></blockquote>
+      </div>
+    </section>
+
+    <!-- 08 REFLECTION -->
+    <section class="section" id="reflection">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span class="num">08</span> Reflection</p>
+        <h2>Looking <em>back</em></h2>
+      </header>
+      <div class="grid grid--2">
+        <article class="card reveal"><p class="card__k">01</p><h3>What worked</h3><p>Testing A against E early made the direction easy to defend. And because I built the no-match and two-match states into my results, the A2 feedback had real answers on screen.</p></article>
+        <article class="card reveal"><p class="card__k">02</p><h3>What didn’t</h3><p>My A2 picks screen only worked if people had added a reason. I was designing for the reader who fills everything in. Then the feedback came, and 2 of 5 testers skipped the reason anyway. Honestly, I was annoyed with myself for not seeing it sooner.</p></article>
+        <article class="card reveal"><p class="card__k">03</p><h3>What I’d improve</h3><p>P2 said “Calling it Show 3 more picks would be easier,” and P4 assumed both buttons changed the selection. Next round I’d rename them “Show 3 more picks” and “Change my preferences”, then retest. I’d also ask Michelle to show the saved message before the reason step.</p></article>
+        <article class="card reveal"><p class="card__k">04</p><h3>How I grew</h3><p>In A2 I linked static screens. By A3 my results reacted to answers and branched into edge states. Running P1 myself taught me that a test I can compare, with confidence and ease scores, tells me more than a pile of opinions.</p></article>
+      </div>
+    </section>
+    <!-- THANKS -->
+    <section class="section thanks" id="thanks">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span class="num">✦</span> Special thanks</p>
+        <h2>Thank you, <em>for the whole semester</em></h2>
+      </header>
+      <div class="thanks__grid">
+        <figure class="thanks__photo reveal">
+          <div class="thanks__frame"><img src="assets/img/team-beng-beng.webp" alt="Group selfie of the Beng-Beng team smiling in a meeting room." width="1280" height="960" loading="lazy" /></div>
+          <figcaption>Group 5 Beng-Beng, the people behind Narrow to Now.</figcaption>
+        </figure>
+        <div class="thanks__notes">
+          <article class="card reveal">
+            <p class="card__k">To our professor</p>
+            <p>Thank you for pushing us after A2. Those three questions (would people really add a reason, what if they don’t, does it feel like one product) stung a little at the time. They ended up shaping everything we did in A3, and they made this a much better project than the one we first pitched.</p>
+          </article>
+          <article class="card card--hi reveal">
+            <p class="card__k">To Janice, Michelle and Michael</p>
+            <p>Thanks for every meeting where we sorted notes together, for twelve ideas, five test sessions, and four people’s screens that somehow turned into one flow. I learned as much from watching how you each work as I did from the brief.</p>
+            <p class="thanks__sign">Beng-Beng forever <span class="spark">✦</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__big reveal">Thanks for <em>reading.</em></p>
+    <div class="footer__row">
+      <a class="btn btn--solid" href="https://celineemily.com/#project">Back to all case studies <span aria-hidden="true">↗</span></a>
+      <a class="btn btn--ghost" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+    <p class="footer__small">© 2026 Celine Emily Wijaya · DV2008 · Designed with intent <span class="spark">✦</span></p>
+  </footer>
+
+  <!-- lightbox -->
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image" hidden>
+    <button class="lightbox__close" aria-label="Close">✕</button>
+    <img alt="" />
+  </div>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
