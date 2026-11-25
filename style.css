@@ -138,8 +138,8 @@ ul, ol, dl { margin: 0; padding: 0; }
 .cloud:nth-child(5) { top: 74%; width: 210px; height: 54px; opacity: .75; animation-duration: 88s; animation-delay: -52s; }
 .cloud:nth-child(6) { top: 6%; width: 100px; height: 30px; opacity: .5; animation-duration: 130s; animation-delay: -100s; }
 @keyframes cloud-drift {
-  from { transform: translateX(-42vw); }
-  to { transform: translateX(142vw); }
+  from { transform: translateX(calc(-100% - 4vw)); }
+  to { transform: translateX(104vw); }
 }
 
 body.has-custom-cursor, body.has-custom-cursor * { cursor: none !important; }
@@ -861,21 +861,90 @@ section { scroll-margin-top: 92px; }
 
 /* moon -> sunset sun */
 :root[data-theme="sunset"] .moon-decoration {
-  border-color: rgba(255, 200, 140, .55);
+  border-color: rgba(255, 170, 80, .55);
   background:
-    radial-gradient(circle at 50% 50%, rgba(255, 250, 238, .98), transparent 12%),
-    radial-gradient(circle at 50% 50%, rgba(255, 214, 150, .95), transparent 38%),
-    radial-gradient(circle at 50% 50%, rgba(255, 150, 90, .9), transparent 66%),
-    radial-gradient(circle at 50% 50%, rgba(240, 110, 80, .55), transparent 82%),
-    linear-gradient(160deg, #ffdca0 0%, #ff9e5c 50%, #f56b4b 100%);
+    radial-gradient(circle at 50% 50%, rgba(255, 196, 84, .98), transparent 16%),
+    radial-gradient(circle at 50% 50%, rgba(255, 164, 44, .95), transparent 42%),
+    radial-gradient(circle at 50% 50%, rgba(255, 118, 16, .9), transparent 70%),
+    radial-gradient(circle at 50% 50%, rgba(240, 78, 10, .55), transparent 86%),
+    linear-gradient(160deg, #ffb347 0%, #ff7f1f 50%, #ee4f0c 100%);
   box-shadow:
-    0 0 90px rgba(255, 170, 110, .7),
-    0 0 220px rgba(255, 130, 90, .5),
-    0 0 400px rgba(230, 90, 120, .3);
+    0 0 90px rgba(255, 140, 40, .7),
+    0 0 220px rgba(255, 110, 24, .5),
+    0 0 400px rgba(235, 80, 20, .3);
 }
 :root[data-theme="sunset"] .moon-decoration::after { border-color: rgba(255, 224, 190, .4); }
 :root[data-theme="sunset"] .moon-crater { opacity: 0; }
 :root[data-theme="sunset"] .orbit { border-color: rgba(255, 215, 195, .32); }
+
+/* 3D sun / moon (celestial.js). The CSS body above stays as the no-WebGL fallback. */
+.celestial-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 170%;
+  height: 170%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity .9s ease;
+  pointer-events: none;
+}
+.orbit { transition: opacity .9s ease; }
+.hero-art.orb-ready .celestial-canvas { opacity: 1; }
+.hero-art.orb-ready .orbit { opacity: 0; }
+.hero-art.orb-ready .moon-decoration { cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.hero-art.orb-ready .moon-decoration.is-dragging { cursor: grabbing; }
+.hero-art.orb-ready .moon-decoration::after,
+.hero-art.orb-ready .moon-crater { opacity: 0; }
+:root .hero-art.orb-live .moon-decoration { border-color: transparent; background: none; box-shadow: none; }
+
+:root[data-theme="night"] .moon-decoration {
+  border-color: rgba(150, 190, 255, .28);
+  background: radial-gradient(circle at 33% 28%, #b4d2ff 0%, #5c8bf5 26%, #2548c4 58%, #0b1a5e 100%);
+  box-shadow: 0 0 60px rgba(90, 140, 255, .42), 0 0 170px rgba(60, 100, 235, .26);
+}
+.moon-crater { display: none; }
+
+/* Realistic clouds (clouds.js). The CSS clouds above stay as the no-WebGL fallback. */
+.sky.clouds-pending .cloud { visibility: hidden; }
+:root .sky.has-real-clouds .cloud {
+  height: auto;
+  aspect-ratio: 2.1;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.sky.has-real-clouds .cloud::before,
+.sky.has-real-clouds .cloud::after { display: none; }
+.sky.has-real-clouds .cloud:nth-child(1) { top: 7%; width: clamp(300px, 38vw, 620px); opacity: .95; }
+.sky.has-real-clouds .cloud:nth-child(2) { top: 24%; width: clamp(200px, 22vw, 360px); opacity: .72; }
+.sky.has-real-clouds .cloud:nth-child(3) { top: 42%; width: clamp(320px, 44vw, 700px); opacity: .88; }
+.sky.has-real-clouds .cloud:nth-child(4) { top: 60%; width: clamp(220px, 26vw, 420px); opacity: .7; }
+.sky.has-real-clouds .cloud:nth-child(5) { top: 72%; width: clamp(280px, 34vw, 560px); opacity: .82; }
+.sky.has-real-clouds .cloud:nth-child(6) { top: 2%; width: clamp(170px, 16vw, 260px); opacity: .55; }
+.cloud-sprite {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+:root[data-theme="day"] .cloud-sprite--day { opacity: 1; }
+:root[data-theme="sunset"] .cloud-sprite--sunset { opacity: .74; }
+
+/* stacked layouts: give the sphere its own row so it never covers the hero facts */
+@media (max-width: 900px) {
+  .hero-art { min-height: calc(min(70vw, 500px) + 76px); margin-top: 10px; }
+  .moon-decoration { left: 50%; }
+  .orbit { left: 50%; }
+  .note-top { top: 0; }
+  .note-bottom { bottom: 0; }
+}
+@media (max-width: 640px) {
+  .hero-art { min-height: calc(74vw + 68px); margin-top: 12px; }
+  .moon-decoration { width: 74vw; }
+}
 
 :root[data-theme="sunset"] .project-card {
   background: linear-gradient(145deg, rgba(48, 30, 58, .92), rgba(20, 14, 28, .92));

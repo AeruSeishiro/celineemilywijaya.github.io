@@ -98,6 +98,29 @@ const caseStudies = {
       { title: '05 · Review', text: 'Use Record to check the calendar, add missed-day notes, and access the shareable report.' },
     ],
     validate: ['Can people across the intended age range quickly distinguish logging a dose from postponing a reminder?', 'Does the resting-forest approach support honest missed-dose reporting without creating guilt?', 'Can users and clinicians understand the medication record independently of the forest and rewards?'],
+    craft: {
+      title: 'A small world that makes',
+      titleEm: 'a daily habit feel gentle.',
+      lead: 'I illustrated Pip and the forest so that logging a dose feels like caring for something small and alive.',
+      text: 'The illustrations carry the warmth, so the medication details can stay plain and clear. Every screen sits inside Acorn’s brand system, using its logo, colours and type.',
+      scenes: [
+        { image: 'images/acorn-lab/scene-home.webp', width: 361, height: 207, label: 'Home', title: 'Pip waits by the door', text: 'A calm scene sits above the next dose, so the reminder feels friendly before it asks for anything.', alt: 'Illustration of Pip the squirrel beside an oak tree with a small door, with young plants on green hills' },
+        { image: 'images/acorn-lab/scene-logged.webp', width: 336, height: 370, label: 'Logged', title: 'A seed goes in the ground', text: 'Each logged dose gets a small reward: Pip plants a seed and acorns drop in.', alt: 'Illustration of Pip holding an acorn beside a newly planted seedling on a round patch of grass, with three acorns falling' },
+        { image: 'images/acorn-lab/scene-forest.webp', width: 403, height: 444, label: 'Forest', title: 'Growth you can’t buy', text: 'Trees come only from logged days, and a dashed outline shows where the next oak will grow.', alt: 'Illustration of the forest with Pip by the oak tree home, a stepping-stone path, young plants and a dashed outline marking the next oak' },
+      ],
+      logos: [
+        { image: 'images/acorn-lab/logo-horizontal.webp', label: 'Primary lockup', tone: 'light', alt: 'Acorn Lab horizontal logo in brown on white' },
+        { image: 'images/acorn-lab/logo-stacked.webp', label: 'Stacked lockup', tone: 'light', alt: 'Acorn Lab stacked logo in brown on white' },
+        { image: 'images/acorn-lab/logo-app-icon.webp', label: 'App icon', tone: 'tan', alt: 'Acorn Lab app icon on a warm tan background' },
+        { image: 'images/acorn-lab/logo-reversed.webp', label: 'Reversed', tone: 'dark', alt: 'Acorn Lab logo reversed in cream on dark brown' },
+        { image: 'images/acorn-lab/logo-mono.webp', label: 'One colour', tone: 'light', alt: 'Acorn Lab logo in solid black on white' },
+      ],
+      palette: [
+        { hex: '#4A2E24', use: 'Headings and main actions', ink: '#fbf6ee' },
+        { hex: '#D4995F', use: 'Acorn and warm accents', ink: '#2c1b14' },
+        { hex: '#FBF6EE', use: 'Light backgrounds', ink: '#4a2e24' },
+      ],
+    },
   },
   'narrow-to-now': {
     slug: 'narrow-to-now',
@@ -301,6 +324,23 @@ const ntnFig = (n, src, w, h, alt, caption, cls = '') => `
 `;
 const ntnSec = (i, inner, cls = '') => `<section class="ntn-section ${cls}" aria-labelledby="ntn-s${i}"><div class="ntn-wrap">${inner}</div></section>`;
 
+const lightboxMarkup = `
+  <dialog class="art-dialog ntn-lightbox" id="ntnLightbox" aria-labelledby="ntnLightboxCaption">
+    <button class="dialog-close" type="button" aria-label="Close image preview">×</button>
+    <img id="ntnLightboxImage" src="" alt="" />
+    <div class="art-dialog-caption ntn-lightbox-bar">
+      <div>
+        <span id="ntnLightboxCount"></span>
+        <h3 id="ntnLightboxCaption"></h3>
+      </div>
+      <div class="ntn-lightbox-nav">
+        <button type="button" data-step="-1" aria-label="Previous image">←</button>
+        <button type="button" data-step="1" aria-label="Next image">→</button>
+      </div>
+    </div>
+  </dialog>
+`;
+
 const renderDetailed = (s) => {
   const { hero, overview, contribution, process, decisions, refinement, craft, outcome, reflection } = s.detail;
   const { context, problem } = overview;
@@ -475,21 +515,56 @@ const renderDetailed = (s) => {
         <a href="project.html?project=${nextStudy.slug}" class="case-next-card"><span>Next case</span><strong>${nextStudy.title} →</strong></a>
       </nav>
 
-      <dialog class="art-dialog ntn-lightbox" id="ntnLightbox" aria-labelledby="ntnLightboxCaption">
-        <button class="dialog-close" type="button" aria-label="Close image preview">×</button>
-        <img id="ntnLightboxImage" src="" alt="" />
-        <div class="art-dialog-caption ntn-lightbox-bar">
-          <div>
-            <span id="ntnLightboxCount"></span>
-            <h3 id="ntnLightboxCaption"></h3>
-          </div>
-          <div class="ntn-lightbox-nav">
-            <button type="button" data-step="-1" aria-label="Previous image">←</button>
-            <button type="button" data-step="1" aria-label="Next image">→</button>
-          </div>
-        </div>
-      </dialog>
+      ${lightboxMarkup}
     </article>
+  `;
+};
+
+/* ─── Design & illustration section (Acorn Lab) ─────────────────── */
+const renderCraft = (craft, number) => {
+  let fig = 0;
+  const scenes = craft.scenes.map((scene) => `
+    <figure class="acorn-scene">
+      <div class="acorn-scene-frame acorn-scene-${scene.label.toLowerCase()}" data-zoom data-fig="${pad2(++fig)}" data-caption="${scene.label} · ${scene.title}">
+        <img src="${scene.image}" width="${scene.width}" height="${scene.height}" alt="${scene.alt}" loading="lazy" decoding="async" />
+      </div>
+      <figcaption><span>${scene.label}</span><strong>${scene.title}</strong><p>${scene.text}</p></figcaption>
+    </figure>
+  `).join('');
+  const logos = craft.logos.map((logo) => `
+    <figure class="acorn-logo is-${logo.tone}" data-zoom data-fig="${pad2(++fig)}" data-caption="Logo · ${logo.label}">
+      <img src="${logo.image}" width="1200" height="718" alt="${logo.alt}" loading="lazy" decoding="async" />
+      <figcaption>${logo.label}</figcaption>
+    </figure>
+  `).join('');
+  const palette = craft.palette.map((swatch) => `
+    <li style="background:${swatch.hex};color:${swatch.ink}"><strong>${swatch.hex}</strong><span>${swatch.use}</span></li>
+  `).join('');
+  return `
+    <section class="case-content-section acorn-craft" aria-labelledby="acorn-craft-title">
+      <div class="case-section-label"><span>${pad2(number)}</span> Design &amp; illustration</div>
+      <div class="case-content-grid">
+        <h2 id="acorn-craft-title">${craft.title} <em>${craft.titleEm}</em></h2>
+        <div>
+          <p class="case-lead">${craft.lead}</p>
+          <p>${craft.text}</p>
+        </div>
+      </div>
+
+      <div class="acorn-subhead"><h3>Illustration</h3><p>Pip’s forest, across three moments</p></div>
+      <div class="acorn-scenes">${scenes}</div>
+
+      <div class="acorn-subhead"><h3>Brand in use</h3><p>Acorn’s logo, colour and type</p></div>
+      <div class="acorn-logos">
+        ${logos}
+        <div class="acorn-type">
+          <p class="acorn-type-serif">Aa <span>Fraunces</span></p>
+          <p class="acorn-type-sans">Aa <span>Plus Jakarta Sans</span></p>
+          <small>Headings · Interface text</small>
+        </div>
+      </div>
+      <ul class="acorn-palette" aria-label="Acorn colour palette">${palette}</ul>
+    </section>
   `;
 };
 
@@ -557,6 +632,13 @@ if (root && study.layout === 'detailed') {
   root.innerHTML = renderDetailed(study);
   initLightbox(root);
 } else if (root) {
+  const craftOffset = study.craft ? 1 : 0;
+  if (study.craft) {
+    const fonts = document.createElement('link');
+    fonts.rel = 'stylesheet';
+    fonts.href = 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Plus+Jakarta+Sans:wght@500&display=swap';
+    document.head.appendChild(fonts);
+  }
   root.innerHTML = `
     <article class="case-study-shell case-study-${study.slug}">
       <section class="case-hero">
@@ -613,8 +695,10 @@ if (root && study.layout === 'detailed') {
         <div class="case-decisions">${decisions}</div>
       </section>
 
+      ${study.craft ? renderCraft(study.craft, 3) : ''}
+
       <section class="case-content-section case-flow-section">
-        <div class="case-section-label"><span>03</span> Experience flow</div>
+        <div class="case-section-label"><span>${pad2(3 + craftOffset)}</span> Experience flow</div>
         <div class="case-content-grid case-flow-grid">
           <h2>From the first action<br />to a more <em>useful outcome.</em></h2>
           <ol class="case-flow">${flow}</ol>
@@ -623,7 +707,7 @@ if (root && study.layout === 'detailed') {
 
       <section class="case-validation">
         <div>
-          <p class="case-kicker"><span>04</span> What I would validate next</p>
+          <p class="case-kicker"><span>${pad2(4 + craftOffset)}</span> What I would validate next</p>
           <h2>Good design earns<br /><em>the next question.</em></h2>
         </div>
         <ul>${validation}</ul>
@@ -635,8 +719,10 @@ if (root && study.layout === 'detailed') {
         <a href="project.html?project=${previousStudy.slug}" class="case-next-card case-next-previous"><span>Previous case</span><strong>← ${previousStudy.title}</strong></a>
         <a href="project.html?project=${nextStudy.slug}" class="case-next-card"><span>Next case</span><strong>${nextStudy.title} →</strong></a>
       </nav>
+      ${study.craft ? lightboxMarkup : ''}
     </article>
   `;
+  if (study.craft) initLightbox(root);
 }
 
 const year = document.getElementById('year');
